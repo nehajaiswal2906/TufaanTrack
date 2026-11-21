@@ -8,6 +8,7 @@ import { createElement } from "react";
 import { flushSync } from "react-dom";
 import { createRoot } from "react-dom/client";
 import L from "leaflet";
+import { MapPin } from "lucide-react";
 import { CATEGORIES } from "../../config/mapConfig";
 
 // Leaflet needs plain HTML text for custom icons, but Lucide icons
@@ -43,3 +44,11 @@ export const MARKER_ICONS = Object.fromEntries(
     createMarkerIcon(category.icon, category.color)
   ])
 );
+
+// Pin for a location the user picks on the map (SOS form)
+export const PICK_ICON = L.divIcon({
+  className: "tt-marker",
+  html: `<div class="tt-pick-pin">${iconToSvgText(MapPin)}</div>`,
+  iconSize: [34, 34],
+  iconAnchor: [17, 32]
+});

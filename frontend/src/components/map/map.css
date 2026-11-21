@@ -399,6 +399,16 @@
   border-radius: 50%;
 }
 
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  margin: 0 2px;
+  border: 2px solid #0e1a28;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #3a536d;
+}
+
 .legend-area {
   width: 18px;
   height: 12px;
@@ -544,6 +554,32 @@
 
 .leaflet-tooltip-top.selected-label::before {
   border-top-color: #59d9e9;
+}
+
+/* ---------- SOS LOCATION PIN ---------- */
+
+.tt-pick-pin {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 3px 6px #000000b0);
+}
+
+.tt-pick-pin svg {
+  width: 34px;
+  height: 34px;
+  fill: #ff4d5e;
+  stroke: #ffffff;
+  stroke-width: 1.6;
+}
+
+.tt-popup-text {
+  margin: 8px 0 0 !important;
+  color: #d5e5f2;
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 /* ---------- NARROW WINDOWS ---------- */

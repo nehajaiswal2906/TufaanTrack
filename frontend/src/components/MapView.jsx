@@ -8,10 +8,11 @@ import {
   GeoJSON,
   Tooltip,
   LayersControl,
-  ScaleControl
+  ScaleControl,
+  useMapEvents
 } from "react-leaflet";
 import L from "leaflet";
-import { LoaderCircle, WifiOff, RefreshCw, Wind } from "lucide-react";
+import { LoaderCircle, WifiOff, RefreshCw, Wind, Radio } from "lucide-react";
 import "leaflet/dist/leaflet.css";
 import "./map/map.css";
 
@@ -25,13 +26,23 @@ import {
 import { DEMO_MAP_DATA } from "../data/demoMapData";
 import { isSimulated } from "../services/cycloneData";
 import { flattenLatLngs } from "../utils/geojson";
-import { MARKER_ICONS } from "./map/markerIcons";
+import { MARKER_ICONS, PICK_ICON } from "./map/markerIcons";
+import { REPORT_STATUSES } from "../config/reports";
+import ReportPopup from "./reports/ReportPopup";
 import MapPopup from "./map/MapPopup";
 import MapLegend from "./map/MapLegend";
 import MapControls from "./map/MapControls";
 import CycloneLayers from "./map/CycloneLayers";
 
 const EMPTY_DATA = { settlement: [], shelter: [], hospital: [] };
+
+// Tells the parent page where the map was clicked
+function ClickListener({ onClick }) {
+  useMapEvents({
+    click: (event) => onClick({ lat: event.latlng.lat, lng: event.latlng.lng })
+  });
+  return null;
+}
 
 // Interactive Leaflet map.
 // Props:
@@ -48,6 +59,9 @@ const EMPTY_DATA = { settlement: [], shelter: [], hospital: [] };
 //   sidePanel  – extra content shown inside the map, on the right
 //   fitCyclone – include the cyclone track when choosing the first view (default true)
 //   roads      – GeoJSON FeatureCollection of roads/bridges to draw (optional)
+//   reports    – emergency reports as map points (from reportsToPoints)
+//   onMapClick – called with { lat, lng } when the map background is clicked
+//   pickedPoint – [lat, lng] of a location picked by the user (shown as a pin)
 function MapView({
   height = 430,
   data = DEMO_MAP_DATA,
@@ -61,7 +75,10 @@ function MapView({
   onSelect,
   sidePanel = null,
   fitCyclone = true,
-  roads = null
+  roads = null,
+  reports = null,
+  onMapClick,
+  pickedPoint = null
 }) {
   const [map, setMap] = useState(null); // the Leaflet map, once it's ready
   const frameRef = useRef(null); // the box around the map (for fullscreen)
@@ -73,6 +90,7 @@ function MapView({
     shelter: true,
     hospital: true,
     cyclone: true,
+    reports: true,
     ...initialLayers
   });
 
@@ -112,19 +130,21 @@ function MapView({
   const selectedItem = useMemo(
     () =>
       selectedId
-        ? Object.values(points).flat().find((item) => item.id === selectedId) ?? null
+        ? [...Object.values(points).flat(), ...(reports ?? [])].find((item) => item.id === selectedId) ?? null
         : null,
-    [points, selectedId]
+    [points, reports, selectedId]
   );
 
   // Fly to a location whenever a new one is selected.
   // If a details panel is open, shift the view so the location isn't hidden behind it.
   const hasSidePanel = Boolean(sidePanel);
+  const selectedLat = selectedItem?.latitude;
+  const selectedLng = selectedItem?.longitude;
   useEffect(() => {
-    if (!map || !selectedItem) return;
+    if (!map || selectedLat == null || selectedLng == null) return;
 
     const zoom = Math.max(map.getZoom(), 12);
-    let target = L.latLng(selectedItem.latitude, selectedItem.longitude);
+    let target = L.latLng(selectedLat, selectedLng);
 
     if (hasSidePanel) {
       const size = map.getSize();
@@ -135,14 +155,15 @@ function MapView({
     }
 
     map.flyTo(target, zoom, { duration: 0.8 });
-  }, [map, selectedItem, hasSidePanel]);
+  }, [map, selectedId, selectedLat, selectedLng, hasSidePanel]);
 
   // Coordinates of everything currently visible (for the "fit" button)
   const visibleLatLngs = [
     ...Object.keys(CATEGORIES)
       .filter((key) => visible[key])
       .flatMap((key) => (points[key] ?? []).map((item) => [item.latitude, item.longitude])),
-    ...(showCyclone ? cycloneLatLngs : [])
+    ...(showCyclone ? cycloneLatLngs : []),
+    ...(reports && visible.reports ? reports.map((r) => [r.latitude, r.longitude]) : [])
   ];
 
   return (
@@ -166,6 +187,19 @@ function MapView({
             </button>
           );
         })}
+
+        {reports && (
+          <button
+            className={visible.reports ? "filter-chip on" : "filter-chip"}
+            style={{ "--chip-color": REPORT_STATUSES.UNVERIFIED.color }}
+            onClick={() => toggleLayer("reports")}
+            aria-pressed={visible.reports}
+          >
+            <Radio size={14} />
+            Reports
+            <span className="chip-count">{reports.length}</span>
+          </button>
+        )}
 
         {cyclone && (
           <button
@@ -224,6 +258,32 @@ function MapView({
           {/* Cyclone track and warning zones (drawn under the markers) */}
           {showCyclone && <CycloneLayers scenario={cyclone} />}
 
+          {/* Map clicks (e.g. picking an SOS location) */}
+          {onMapClick && <ClickListener onClick={onMapClick} />}
+
+          {/* Emergency reports, coloured by status */}
+          {reports &&
+            visible.reports &&
+            reports.map((report) => {
+              const color = REPORT_STATUSES[report.status]?.color ?? "#8ea3b9";
+              return (
+                <CircleMarker
+                  key={report.id}
+                  center={[report.latitude, report.longitude]}
+                  radius={9}
+                  pathOptions={{ color: "#0e1a28", weight: 2, fillColor: color, fillOpacity: 0.95 }}
+                  eventHandlers={onSelect ? { click: () => onSelect("report", report) } : undefined}
+                >
+                  <Popup>
+                    <ReportPopup report={report} />
+                  </Popup>
+                </CircleMarker>
+              );
+            })}
+
+          {/* Location picked by the user */}
+          {pickedPoint && <Marker position={pickedPoint} icon={PICK_ICON} interactive={false} />}
+
           {/* Ring around the selected location */}
           {selectedItem && (
             <CircleMarker
@@ -272,6 +332,7 @@ function MapView({
         <MapLegend
           zones={showCyclone ? cyclone.zones : []}
           showTrack={showCyclone && cyclone.tracks.length > 0}
+          showReports={Boolean(reports) && visible.reports}
         />
 
         {/* Loading / error messages on top of the map */}

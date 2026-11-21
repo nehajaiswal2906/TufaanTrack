@@ -6,12 +6,14 @@ import {
   ZONE_STYLES,
   DEFAULT_ZONE_STYLE
 } from "../../config/mapConfig";
+import { REPORT_STATUSES, STATUS_ORDER } from "../../config/reports";
 
 // Legend that sits on top of the map (bottom-left corner).
 // Click the header to collapse it.
 //   zones     – warning zones currently on the map (from the backend)
 //   showTrack – true if a cyclone track is on the map
-function MapLegend({ zones = [], showTrack = false }) {
+//   showReports – true if emergency reports are on the map
+function MapLegend({ zones = [], showTrack = false, showReports = false }) {
   // Start open on wide windows, folded on narrow ones
   const [open, setOpen] = useState(() => window.innerWidth > 650);
 
@@ -55,6 +57,14 @@ function MapLegend({ zones = [], showTrack = false }) {
               </li>
             );
           })}
+
+          {showReports &&
+            STATUS_ORDER.map((status) => (
+              <li key={status}>
+                <span className="legend-dot" style={{ background: REPORT_STATUSES[status].color }} />
+                Report: {REPORT_STATUSES[status].label.toLowerCase()}
+              </li>
+            ))}
 
           {showTrack && (
             <li>
