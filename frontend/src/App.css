@@ -1144,3 +1144,65 @@
     transition: none !important;
   }
 }
+
+/* =========================================
+   SHARED: PRIORITY BADGE, TAGS, PAGE MESSAGES
+   (used by Settlements and Impact Assessment)
+========================================= */
+
+.priority-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  color: var(--priority-color);
+  background: color-mix(in srgb, var(--priority-color) 14%, #142237);
+  border: 1px solid color-mix(in srgb, var(--priority-color) 45%, transparent);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.priority-badge.small {
+  padding: 2px 7px;
+  font-size: 10px;
+}
+
+.priority-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  background: var(--priority-color);
+  border-radius: 50%;
+}
+
+.outside-tag {
+  padding: 2px 7px;
+  color: #8ea3b9;
+  background: #172a3f;
+  border: 1px solid #2f4760;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Full-page loading / error message */
+.page-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 60px 20px;
+  color: #a8bbcf;
+  background: #1b2c41;
+  border: 1px solid #3a526c;
+  border-radius: 12px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.page-message.error svg {
+  color: #ff6576;
+}

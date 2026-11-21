@@ -4,6 +4,7 @@ import {
   TileLayer,
   Marker,
   Popup,
+  CircleMarker,
   LayersControl,
   ScaleControl
 } from "react-leaflet";
@@ -40,6 +41,9 @@ const EMPTY_DATA = { settlement: [], shelter: [], hospital: [] };
 //   error    – error message if loading failed
 //   onRetry  – function called by the "Try again" button
 //   initialLayers – which layers start switched on, e.g. { shelter: false }
+//   selectedId – ID of the location to highlight (the map flies to it)
+//   onSelect   – called with (categoryKey, item) when a marker is clicked
+//   sidePanel  – extra content shown inside the map, on the right
 function MapView({
   height = 430,
   data = DEMO_MAP_DATA,
@@ -48,7 +52,10 @@ function MapView({
   loading = false,
   error = null,
   onRetry,
-  initialLayers = {}
+  initialLayers = {},
+  selectedId = null,
+  onSelect,
+  sidePanel = null
 }) {
   const [map, setMap] = useState(null); // the Leaflet map, once it's ready
   const frameRef = useRef(null); // the box around the map (for fullscreen)
@@ -94,6 +101,35 @@ function MapView({
     map.fitBounds(L.latLngBounds(allLatLngs), { padding: [30, 30] });
     hasFitted.current = true;
   }, [map, points, cycloneLatLngs, isDemo, loading]);
+
+  // The selected location (if any), searched across all categories
+  const selectedItem = useMemo(
+    () =>
+      selectedId
+        ? Object.values(points).flat().find((item) => item.id === selectedId) ?? null
+        : null,
+    [points, selectedId]
+  );
+
+  // Fly to a location whenever a new one is selected.
+  // If a details panel is open, shift the view so the location isn't hidden behind it.
+  const hasSidePanel = Boolean(sidePanel);
+  useEffect(() => {
+    if (!map || !selectedItem) return;
+
+    const zoom = Math.max(map.getZoom(), 12);
+    let target = L.latLng(selectedItem.latitude, selectedItem.longitude);
+
+    if (hasSidePanel) {
+      const size = map.getSize();
+      // Wide map: panel is on the right, so move the location left.
+      // Narrow map: panel is at the bottom, so move the location up.
+      const offset = size.x > 650 ? L.point(170, 0) : L.point(0, size.y * 0.28);
+      target = map.unproject(map.project(target, zoom).add(offset), zoom);
+    }
+
+    map.flyTo(target, zoom, { duration: 0.8 });
+  }, [map, selectedItem, hasSidePanel]);
 
   // Coordinates of everything currently visible (for the "fit" button)
   const visibleLatLngs = [
@@ -170,6 +206,16 @@ function MapView({
           {/* Cyclone track and warning zones (drawn under the markers) */}
           {showCyclone && <CycloneLayers scenario={cyclone} />}
 
+          {/* Ring around the selected location */}
+          {selectedItem && (
+            <CircleMarker
+              center={[selectedItem.latitude, selectedItem.longitude]}
+              radius={24}
+              interactive={false}
+              pathOptions={{ color: "#59d9e9", weight: 3, fillColor: "#59d9e9", fillOpacity: 0.12 }}
+            />
+          )}
+
           {/* Markers for every switched-on category */}
           {Object.entries(CATEGORIES).map(([key, category]) =>
             visible[key]
@@ -178,6 +224,7 @@ function MapView({
                     key={item.id}
                     position={[item.latitude, item.longitude]}
                     icon={MARKER_ICONS[key]}
+                    eventHandlers={onSelect ? { click: () => onSelect(key, item) } : undefined}
                   >
                     <Popup>
                       <MapPopup
@@ -192,6 +239,9 @@ function MapView({
               : null
           )}
         </MapContainer>
+
+        {/* Optional details panel inside the map (right side) */}
+        {sidePanel && <div className="map-side-panel">{sidePanel}</div>}
 
         {/* Overlays on top of the map */}
         <MapControls map={map} frameRef={frameRef} points={visibleLatLngs} />

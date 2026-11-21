@@ -515,6 +515,25 @@
   margin-right: 3px;
 }
 
+/* ---------- DETAILS PANEL INSIDE THE MAP ---------- */
+
+.map-side-panel {
+  position: absolute;
+  top: 62px; /* below the layers button */
+  right: 10px;
+  bottom: 12px;
+  z-index: 850;
+  width: 320px;
+  overflow-y: auto;
+  background: #132235f2;
+  border: 1px solid #3a536d;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px #00000080;
+  backdrop-filter: blur(6px);
+  scrollbar-width: thin;
+  scrollbar-color: #3a536d transparent;
+}
+
 /* ---------- NARROW WINDOWS ---------- */
 
 @media (max-width: 650px) {
@@ -540,5 +559,13 @@
 
   .filter-chip {
     font-size: 11px;
+  }
+
+  /* Details panel covers the lower part of the map */
+  .map-side-panel {
+    top: auto;
+    left: 10px;
+    width: auto;
+    max-height: 62%;
   }
 }
