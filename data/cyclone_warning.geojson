@@ -1,0 +1,111 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              85.75,
+              19.75
+            ],
+            [
+              86.27,
+              19.75
+            ],
+            [
+              86.27,
+              19.95
+            ],
+            [
+              85.75,
+              19.87
+            ],
+            [
+              85.75,
+              19.75
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "warning_id": "WRN_RED_001",
+        "zone": "RED",
+        "projected_surge_m": 4.5,
+        "simulated": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              85.65,
+              19.77
+            ],
+            [
+              86.28,
+              19.77
+            ],
+            [
+              86.28,
+              19.96
+            ],
+            [
+              85.65,
+              19.93
+            ],
+            [
+              85.65,
+              19.77
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "warning_id": "WRN_ORANGE_001",
+        "zone": "ORANGE",
+        "projected_surge_m": 2.0,
+        "simulated": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            87.5,
+            18.5
+          ],
+          [
+            86.8,
+            19.0
+          ],
+          [
+            86.2,
+            19.4
+          ],
+          [
+            85.85,
+            19.7
+          ],
+          [
+            85.75,
+            19.9
+          ]
+        ]
+      },
+      "properties": {
+        "warning_id": "TRK_SIM_001",
+        "track_name": "Simulated Cyclone ASTRA",
+        "category": "VSCS",
+        "simulated": true
+      }
+    }
+  ]
+}
