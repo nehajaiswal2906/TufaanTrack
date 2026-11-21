@@ -1,0 +1,1229 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.2228397,
+          19.5264572
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0001",
+        "name": "Bajrakot",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.2412954,
+          19.5579305
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0002",
+        "name": "Malud",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.3853306,
+          19.6341594
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0003",
+        "name": "Unnamed Settlement",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.2621449,
+          19.6353797
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0004",
+        "name": "Krishnaprasad",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.404582,
+          19.6483369
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0005",
+        "name": "Jahnikuda",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.4264067,
+          19.6522885
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0006",
+        "name": "Mainsha",
+        "population": 2000,
+        "pop_source": "osm",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.451245,
+          19.6629757
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0007",
+        "name": "Alupatna",
+        "population": 150,
+        "pop_source": "estimated_default",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.3759769,
+          19.6661788
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0008",
+        "name": "Nuapada",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.4436346,
+          19.6691882
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0009",
+        "name": "Satpada",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.4454467,
+          19.6697301
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0010",
+        "name": "Unnamed Settlement",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 13
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.4060399,
+          19.6790755
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0011",
+        "name": "Gurubai",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.4984258,
+          19.6799667
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0012",
+        "name": "Sipakuda",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.480531,
+          19.6828474
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0013",
+        "name": "Nuagaon",
+        "population": 150,
+        "pop_source": "estimated_default",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.5236216,
+          19.7182048
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0014",
+        "name": "Panas Pada",
+        "population": 150,
+        "pop_source": "estimated_default",
+        "elevation_m": 14
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.6083566,
+          19.7842266
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0015",
+        "name": "Garharodhanga",
+        "population": 150,
+        "pop_source": "estimated_default",
+        "elevation_m": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.642848,
+          19.7963043
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0016",
+        "name": "Brahmagiri",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.6506573,
+          19.7977037
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0017",
+        "name": "Naharpada Bazaar",
+        "population": 150,
+        "pop_source": "estimated_default",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.6732834,
+          19.7984765
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0018",
+        "name": "Maa Baliharichandi",
+        "population": 150,
+        "pop_source": "estimated_default",
+        "elevation_m": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.7615143,
+          19.8126701
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0019",
+        "name": "Alipada",
+        "population": 150,
+        "pop_source": "estimated_default",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8253665,
+          19.8201913
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0020",
+        "name": "Khandiabandha",
+        "population": 10000,
+        "pop_source": "osm",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8314405,
+          19.8279101
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0021",
+        "name": "Makundamishra Nagar",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8358157,
+          19.8334975
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0022",
+        "name": "Charinala",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8417226,
+          19.8497519
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0023",
+        "name": "Biraharekrushnapur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8323373,
+          19.8554203
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0024",
+        "name": "Batagaon",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.9433102,
+          19.8615285
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0025",
+        "name": "Balighai",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8196506,
+          19.8767677
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0026",
+        "name": "Tulasichura",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 15
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8265431,
+          19.8853717
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0027",
+        "name": "Raghurajpur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8147617,
+          19.8918561
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0028",
+        "name": "Damodarpur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8097189,
+          19.8921011
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0029",
+        "name": "Dolagobindapur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.7910583,
+          19.8959212
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0030",
+        "name": "Biranarasinghpur",
+        "population": 5000,
+        "pop_source": "osm",
+        "elevation_m": 15
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8032471,
+          19.8961206
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0031",
+        "name": "Jagannathpur",
+        "population": 1500,
+        "pop_source": "osm",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8140332,
+          19.8972527
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0032",
+        "name": "Birapratappur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8195856,
+          19.9067354
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0033",
+        "name": "Samjajpur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1529786,
+          19.91344
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0034",
+        "name": "Balidokan",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2417382,
+          19.9170065
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0035",
+        "name": "Natara",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8220786,
+          19.9226397
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0036",
+        "name": "Biragobindapur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 14
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2403956,
+          19.9228248
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0037",
+        "name": "Karala",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2336128,
+          19.92577
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0038",
+        "name": "Badaola",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2153052,
+          19.9269811
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0039",
+        "name": "Inayatpur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2234366,
+          19.9283734
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0040",
+        "name": "Sisua",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.230204,
+          19.9309814
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0041",
+        "name": "Sanaola",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2132903,
+          19.9317759
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0042",
+        "name": "Taya",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2256739,
+          19.939574
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0043",
+        "name": "Ratanpur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.24008,
+          19.9419489
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0044",
+        "name": "Potala",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2330423,
+          19.9420177
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0045",
+        "name": "Bantilo",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2207934,
+          19.9420395
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0046",
+        "name": "Tirikana",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.265974,
+          19.9608245
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0047",
+        "name": "Gudubani",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0349793,
+          19.9610436
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0048",
+        "name": "Begunia",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.5749667,
+          19.9666734
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0049",
+        "name": "Gadisagada",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2683821,
+          19.9784308
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0050",
+        "name": "Astaranga",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0170665,
+          19.9849126
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0051",
+        "name": "Gop",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8237817,
+          19.995579
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0052",
+        "name": "Satasankha",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1982154,
+          20.0025077
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0053",
+        "name": "Kakatpur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1166037,
+          20.0080724
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0054",
+        "name": "Itapada",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1597383,
+          20.011383
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0055",
+        "name": "Suhanpur (Behera Sahi)",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1189144,
+          20.0130964
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0056",
+        "name": "Kolar",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1583635,
+          20.0133793
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0057",
+        "name": "Gopikantapur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1615053,
+          20.0138417
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0058",
+        "name": "Somanathapur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8062331,
+          20.0148079
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0059",
+        "name": "Teisipur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 15
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1540057,
+          20.0150076
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0060",
+        "name": "Gopikantapur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1670162,
+          20.0224437
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0061",
+        "name": "\u0b1f\u0b2d\u0b3e\u0b17\u0b4b\u0b32\u0b30\u0b3e\u0b17\u0b21\u0b3c",
+        "population": 160,
+        "pop_source": "osm",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1390712,
+          20.0301532
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0062",
+        "name": "Nuahata",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1272228,
+          20.0353987
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0063",
+        "name": "Jogeswarpur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.7782333,
+          20.0504554
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0064",
+        "name": "Odataraboi",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8338685,
+          20.0508952
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0065",
+        "name": "Mangalpur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 13
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.7807868,
+          20.0559381
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0066",
+        "name": "Brahman Taraboi",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 14
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0103497,
+          20.0598595
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0067",
+        "name": "Nimapada",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 13
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0816147,
+          20.0603367
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0068",
+        "name": "Charichhak",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.748291,
+          20.0627843
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0069",
+        "name": "Delanga",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.7861539,
+          20.0632094
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0070",
+        "name": "Khelaur",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8625521,
+          20.1357757
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0071",
+        "name": "Manga",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 16
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8610768,
+          20.193339
+        ]
+      },
+      "properties": {
+        "village_id": "PURI-V0072",
+        "name": "Uttara",
+        "population": 500,
+        "pop_source": "estimated_default",
+        "elevation_m": 16
+      }
+    }
+  ]
+}

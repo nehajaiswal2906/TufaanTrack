@@ -1,0 +1,761 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8185743,
+          19.8003005
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0001",
+        "name": "UPHC, Swargadwar",
+        "type": "PHC",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 17
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8331548,
+          19.8003863
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0002",
+        "name": "Chandan Hazuri Paediatric Hospital",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8241345,
+          19.8016875
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0003",
+        "name": "E-24 Hospital",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 13
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8325204,
+          19.8017351
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0004",
+        "name": "Swapu Care",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8052708,
+          19.803743
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0005",
+        "name": "Fahther Marian Lepra Centre",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8359869,
+          19.8050434
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0006",
+        "name": "K.D.M.M , Puri",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8330401,
+          19.8076253
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0007",
+        "name": "Nilachal Nursing Home",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.825702,
+          19.810904
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0008",
+        "name": "Patanjali Hospital",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8304216,
+          19.8111378
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0009",
+        "name": "Arogyadham Clinic",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8352343,
+          19.8112056
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0010",
+        "name": "I.D.H, Puri",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.829929,
+          19.811252
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0011",
+        "name": "Om Sai Eye Care Hospitals",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 14
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8256128,
+          19.8113176
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0012",
+        "name": "Sharada Nursing Home",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8347967,
+          19.811861
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0013",
+        "name": "Girish Chandra Behra Clinic",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8312458,
+          19.8120735
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0014",
+        "name": "Maa Harijana Seka Clinic",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8307868,
+          19.8121172
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0015",
+        "name": "Apollo Hospital",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.834597,
+          19.8124944
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0016",
+        "name": "Kalara Hospital",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.842205,
+          19.812752
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0017",
+        "name": "Nandalaya Arogya Ashrama Clinic and Surgic Centre",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8319784,
+          19.8131671
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0018",
+        "name": "Sarala Pantholab",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8299503,
+          19.8142712
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0019",
+        "name": "District Headquarter Hospital ,Puri",
+        "type": "district_hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8295966,
+          19.8144032
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0020",
+        "name": "Government Hospital, Puri",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8403464,
+          19.8146852
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0021",
+        "name": "Sanjeevani Hospital (Puri)",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.7416477,
+          19.8158082
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0022",
+        "name": "Samuka Hospital",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8413723,
+          19.8161689
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0023",
+        "name": "Sahoo Clinic",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 13
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8405834,
+          19.8171894
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0024",
+        "name": "Gupta Clinic",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 14
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.840601,
+          19.817323
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0025",
+        "name": "Sai Saudamini Nursing Home",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 14
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8405863,
+          19.8176939
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0026",
+        "name": "Sri Krishna Hospital",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8390402,
+          19.8205404
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0027",
+        "name": "Sri Krishna Clinic",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.828647,
+          19.823713
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0028",
+        "name": "Keya Fertility and Test Tube Baby centre",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8527662,
+          19.8247793
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0029",
+        "name": "Ramamani Multi Speciality Hospital",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.862003,
+          19.8315158
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0030",
+        "name": "Mental Hospital",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.9558946,
+          19.8587345
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0031",
+        "name": "Healthcare Centre",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8501385,
+          19.8878382
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0032",
+        "name": "Government Hospital, Chalisbatia",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0976297,
+          19.8905744
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0033",
+        "name": "Medical Facility (Hospital/Clinic)",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8080181,
+          19.8955717
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0034",
+        "name": "CHC, Chandanpur",
+        "type": "CHC",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.153337,
+          19.9135656
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0035",
+        "name": "Dr. B.C Panda Clinic",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1071828,
+          19.9278299
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0036",
+        "name": "Dr. Manoranjan Maharana Clinic",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.70785,
+          19.9296622
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0037",
+        "name": "Government Hospital, Sukal",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1906785,
+          19.9423742
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0038",
+        "name": "Bangurigaon Medical",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1851444,
+          19.9506189
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0039",
+        "name": "Maa Managala Clinic",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0351581,
+          19.9615858
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0040",
+        "name": "Kanakalata Seva Sadan Ayush Clinic",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.7239533,
+          19.9846936
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0041",
+        "name": "Government Hospital, Indipur",
+        "type": "hospital",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.012633,
+          19.9885317
+        ]
+      },
+      "properties": {
+        "hospital_id": "PURI-H0042",
+        "name": "Seva Nursing Home, Puri",
+        "type": "clinic",
+        "beds": 0,
+        "source": "osm",
+        "elevation_m": 8
+      }
+    }
+  ]
+}
