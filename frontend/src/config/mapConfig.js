@@ -45,6 +45,27 @@ export const CATEGORIES = {
   }
 };
 
-// Colours for map shapes (also used by the legend)
-export const WARNING_COLOR = "#f3a64c";
-export const TRACK_COLOR = "#ff647c";
+// ---------- Cyclone scenario ----------
+
+// Colour of the cyclone track line and its direction arrows
+export const TRACK_COLOR = "#c4a7ff";
+
+// Warning-zone colours, keyed by the backend's `zone` value
+export const ZONE_STYLES = {
+  RED: { color: "#ff4d5e", label: "Red warning zone" },
+  ORANGE: { color: "#f3a64c", label: "Orange warning zone" }
+};
+
+// Used if the backend ever sends a zone name we don't know
+export const DEFAULT_ZONE_STYLE = { color: "#8ea3b9", label: "Warning zone" };
+
+// IMD cyclone categories (short code → full name)
+export const CYCLONE_CATEGORIES = {
+  D: "Depression",
+  DD: "Deep Depression",
+  CS: "Cyclonic Storm",
+  SCS: "Severe Cyclonic Storm",
+  VSCS: "Very Severe Cyclonic Storm",
+  ESCS: "Extremely Severe Cyclonic Storm",
+  SuCS: "Super Cyclonic Storm"
+};

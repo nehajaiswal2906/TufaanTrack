@@ -1,10 +1,12 @@
 import MapView from "../components/MapView";
 import { useApi } from "../hooks/useApi";
 import { loadMapPoints } from "../services/mapData";
+import { loadCycloneScenario } from "../services/cycloneData";
 
 // Full map page: a taller map with every map tool, using backend data.
 function LiveMapPage() {
   const mapData = useApi(loadMapPoints);
+  const cyclone = useApi(loadCycloneScenario);
 
   let badge = { className: "status-badge pending", text: "LOADING" };
   if (mapData.error) badge = { className: "status-badge error", text: "BACKEND OFFLINE" };
@@ -25,15 +27,16 @@ function LiveMapPage() {
       <p className="map-help">
         Use the chips to show or hide layers, click a marker for details,
         and switch between Dark and Street maps from the layers button (top-right).
-        Shelters are candidate sites and some populations are estimated — check each popup.
+        Shelters are candidate sites, some populations are estimated, and the cyclone scenario is simulated — check each popup.
       </p>
 
       {/* Taller map: fills most of the screen, but never shorter than 460px */}
       <MapView
         height="max(460px, calc(100vh - 330px))"
         data={mapData.data ?? { settlement: [], shelter: [], hospital: [] }}
+        cyclone={cyclone.data}
         isDemo={false}
-        loading={mapData.loading}
+        loading={mapData.loading || cyclone.loading}
         error={mapData.error}
         onRetry={mapData.retry}
       />

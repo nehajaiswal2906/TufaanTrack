@@ -1,12 +1,22 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { CATEGORIES, WARNING_COLOR, TRACK_COLOR } from "../../config/mapConfig";
+import {
+  CATEGORIES,
+  TRACK_COLOR,
+  ZONE_STYLES,
+  DEFAULT_ZONE_STYLE
+} from "../../config/mapConfig";
 
 // Legend that sits on top of the map (bottom-left corner).
 // Click the header to collapse it.
-function MapLegend({ showDemoShapes }) {
+//   zones     – warning zones currently on the map (from the backend)
+//   showTrack – true if a cyclone track is on the map
+function MapLegend({ zones = [], showTrack = false }) {
   // Start open on wide windows, folded on narrow ones
   const [open, setOpen] = useState(() => window.innerWidth > 650);
+
+  // One legend row per zone type (e.g. RED, ORANGE), no duplicates
+  const zoneTypes = [...new Set(zones.map((zone) => zone.zone))].reverse();
 
   return (
     <div className="map-legend-panel">
@@ -33,20 +43,24 @@ function MapLegend({ showDemoShapes }) {
             );
           })}
 
-          {showDemoShapes && (
-            <>
-              <li>
+          {zoneTypes.map((zoneType) => {
+            const style = ZONE_STYLES[zoneType] ?? DEFAULT_ZONE_STYLE;
+            return (
+              <li key={zoneType}>
                 <span
                   className="legend-area"
-                  style={{ borderColor: WARNING_COLOR, background: `${WARNING_COLOR}33` }}
+                  style={{ borderColor: style.color, background: `${style.color}33` }}
                 />
-                Warning zone (demo)
+                {style.label}
               </li>
-              <li>
-                <span className="legend-line" style={{ borderColor: TRACK_COLOR }} />
-                Cyclone track (demo)
-              </li>
-            </>
+            );
+          })}
+
+          {showTrack && (
+            <li>
+              <span className="legend-line" style={{ borderColor: TRACK_COLOR }} />
+              Cyclone track (simulated)
+            </li>
           )}
         </ul>
       )}

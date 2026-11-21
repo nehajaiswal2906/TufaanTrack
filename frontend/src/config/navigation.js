@@ -40,7 +40,7 @@ export const NAV_SECTIONS = [
         label: "Cyclone Tracking",
         icon: Wind,
         title: "Cyclone Tracking",
-        description: "Cyclone track, warning zones and movement details"
+        description: "Simulated cyclone track, warning zones and movement"
       }
     ]
   },

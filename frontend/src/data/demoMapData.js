@@ -23,17 +23,3 @@ export const DEMO_MAP_DATA = {
     { id: "demo-hospital-b", name: "Demo Health Centre B", latitude: 19.885, longitude: 85.83 }
   ]
 };
-
-// Sample warning radius and track, kept from the original map.
-// Module 3 replaces these with /api/warning-zone and /api/cyclone.
-export const DEMO_WARNING_CIRCLE = {
-  center: [19.8135, 85.8312],
-  radiusMeters: 3500
-};
-
-export const DEMO_TRACK = [
-  [20.5, 86.5],
-  [20.2, 86.2],
-  [20.0, 86.0],
-  [19.8135, 85.8312]
-];

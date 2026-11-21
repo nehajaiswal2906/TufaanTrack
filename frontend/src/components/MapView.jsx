@@ -1,16 +1,14 @@
-import { useEffect, useRef, useState } from "react";
-import L from "leaflet";
-import { LoaderCircle, WifiOff, RefreshCw } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   MapContainer,
   TileLayer,
   Marker,
   Popup,
-  Circle,
-  Polyline,
   LayersControl,
   ScaleControl
 } from "react-leaflet";
+import L from "leaflet";
+import { LoaderCircle, WifiOff, RefreshCw, Wind } from "lucide-react";
 import "leaflet/dist/leaflet.css";
 import "./map/map.css";
 
@@ -19,80 +17,105 @@ import {
   MAP_ZOOM,
   BASE_LAYERS,
   CATEGORIES,
-  WARNING_COLOR,
   TRACK_COLOR
 } from "../config/mapConfig";
-import {
-  DEMO_MAP_DATA,
-  DEMO_WARNING_CIRCLE,
-  DEMO_TRACK
-} from "../data/demoMapData";
+import { DEMO_MAP_DATA } from "../data/demoMapData";
+import { isSimulated } from "../services/cycloneData";
+import { flattenLatLngs } from "../utils/geojson";
 import { MARKER_ICONS } from "./map/markerIcons";
 import MapPopup from "./map/MapPopup";
 import MapLegend from "./map/MapLegend";
 import MapControls from "./map/MapControls";
+import CycloneLayers from "./map/CycloneLayers";
+
+const EMPTY_DATA = { settlement: [], shelter: [], hospital: [] };
 
 // Interactive Leaflet map.
 // Props:
 //   height   – map height, e.g. 430 or "70vh" (default 430)
 //   data     – { settlement: [...], shelter: [...], hospital: [...] }
+//   cyclone  – cyclone scenario from loadCycloneScenario(), or null
 //   isDemo   – true while using demo data (shows warning labels)
 //   loading  – true while data is being loaded from the backend
 //   error    – error message if loading failed
 //   onRetry  – function called by the "Try again" button
+//   initialLayers – which layers start switched on, e.g. { shelter: false }
 function MapView({
   height = 430,
   data = DEMO_MAP_DATA,
+  cyclone = null,
   isDemo = true,
   loading = false,
   error = null,
-  onRetry
+  onRetry,
+  initialLayers = {}
 }) {
   const [map, setMap] = useState(null); // the Leaflet map, once it's ready
   const frameRef = useRef(null); // the box around the map (for fullscreen)
+  const points = data ?? EMPTY_DATA;
 
-  // Which categories are switched on
+  // Which layers are switched on
   const [visible, setVisible] = useState({
     settlement: true,
     shelter: true,
-    hospital: true
+    hospital: true,
+    cyclone: true,
+    ...initialLayers
   });
 
-  function toggleCategory(key) {
+  function toggleLayer(key) {
     setVisible((current) => ({ ...current, [key]: !current[key] }));
   }
 
-  // When real data first arrives, zoom the map so every location fits
+  const showCyclone = Boolean(cyclone) && visible.cyclone;
+  // Every point of the cyclone track and zones (worked out once per scenario)
+  const cycloneLatLngs = useMemo(
+    () =>
+      cyclone
+        ? [
+            ...cyclone.tracks.flatMap((track) => track.latlngs),
+            ...cyclone.zones.flatMap((zone) => flattenLatLngs(zone.latlngs))
+          ]
+        : [],
+    [cyclone]
+  );
+
+  // When loading finishes, zoom the map so every location (and the cyclone) fits
   const hasFitted = useRef(false);
   useEffect(() => {
-    if (!map || isDemo || hasFitted.current) return;
-    const allPoints = Object.values(data).flat();
-    if (allPoints.length === 0) return;
-    map.fitBounds(
-      L.latLngBounds(allPoints.map((item) => [item.latitude, item.longitude])),
-      { padding: [30, 30] }
-    );
-    hasFitted.current = true;
-  }, [map, data, isDemo]);
+    if (!map || isDemo || loading || hasFitted.current) return;
 
-  // Coordinates of all currently visible markers (for "fit to markers")
-  const visiblePoints = Object.keys(CATEGORIES)
-    .filter((key) => visible[key])
-    .flatMap((key) => (data[key] ?? []).map((item) => [item.latitude, item.longitude]));
+    const allLatLngs = [
+      ...Object.values(points).flat().map((item) => [item.latitude, item.longitude]),
+      ...cycloneLatLngs
+    ];
+    if (allLatLngs.length === 0) return;
+
+    map.fitBounds(L.latLngBounds(allLatLngs), { padding: [30, 30] });
+    hasFitted.current = true;
+  }, [map, points, cycloneLatLngs, isDemo, loading]);
+
+  // Coordinates of everything currently visible (for the "fit" button)
+  const visibleLatLngs = [
+    ...Object.keys(CATEGORIES)
+      .filter((key) => visible[key])
+      .flatMap((key) => (points[key] ?? []).map((item) => [item.latitude, item.longitude])),
+    ...(showCyclone ? cycloneLatLngs : [])
+  ];
 
   return (
     <div className="map-view">
-      {/* ---------- CATEGORY FILTERS ---------- */}
+      {/* ---------- LAYER FILTERS ---------- */}
       <div className="map-filters" role="group" aria-label="Show or hide map layers">
         {Object.entries(CATEGORIES).map(([key, category]) => {
           const Icon = category.icon;
-          const count = data[key]?.length ?? 0;
+          const count = points[key]?.length ?? 0;
           return (
             <button
               key={key}
               className={visible[key] ? "filter-chip on" : "filter-chip"}
               style={{ "--chip-color": category.color }}
-              onClick={() => toggleCategory(key)}
+              onClick={() => toggleLayer(key)}
               aria-pressed={visible[key]}
             >
               <Icon size={14} />
@@ -101,6 +124,19 @@ function MapView({
             </button>
           );
         })}
+
+        {cyclone && (
+          <button
+            className={visible.cyclone ? "filter-chip on" : "filter-chip"}
+            style={{ "--chip-color": TRACK_COLOR }}
+            onClick={() => toggleLayer("cyclone")}
+            aria-pressed={visible.cyclone}
+          >
+            <Wind size={14} />
+            Cyclone scenario
+            {isSimulated(cyclone) && <span className="chip-count">SIM</span>}
+          </button>
+        )}
       </div>
 
       {/* ---------- MAP ---------- */}
@@ -131,35 +167,13 @@ function MapView({
 
           <ScaleControl position="bottomright" imperial={false} />
 
-          {/* Demo warning zone and track (replaced in Module 3) */}
-          {isDemo && (
-            <>
-              <Circle
-                center={DEMO_WARNING_CIRCLE.center}
-                radius={DEMO_WARNING_CIRCLE.radiusMeters}
-                pathOptions={{
-                  color: WARNING_COLOR,
-                  fillColor: WARNING_COLOR,
-                  fillOpacity: 0.12,
-                  weight: 2
-                }}
-              />
-              <Polyline
-                positions={DEMO_TRACK}
-                pathOptions={{
-                  color: TRACK_COLOR,
-                  weight: 3,
-                  opacity: 0.9,
-                  dashArray: "8 8"
-                }}
-              />
-            </>
-          )}
+          {/* Cyclone track and warning zones (drawn under the markers) */}
+          {showCyclone && <CycloneLayers scenario={cyclone} />}
 
           {/* Markers for every switched-on category */}
           {Object.entries(CATEGORIES).map(([key, category]) =>
             visible[key]
-              ? (data[key] ?? []).map((item) => (
+              ? (points[key] ?? []).map((item) => (
                   <Marker
                     key={item.id}
                     position={[item.latitude, item.longitude]}
@@ -180,8 +194,11 @@ function MapView({
         </MapContainer>
 
         {/* Overlays on top of the map */}
-        <MapControls map={map} frameRef={frameRef} points={visiblePoints} />
-        <MapLegend showDemoShapes={isDemo} />
+        <MapControls map={map} frameRef={frameRef} points={visibleLatLngs} />
+        <MapLegend
+          zones={showCyclone ? cyclone.zones : []}
+          showTrack={showCyclone && cyclone.tracks.length > 0}
+        />
 
         {/* Loading / error messages on top of the map */}
         {loading && (
@@ -203,10 +220,14 @@ function MapView({
           </div>
         )}
 
-        {isDemo && (
-          <div className="map-demo-label">
-            DEMO DATA · NOT LIVE DISASTER INFORMATION
-          </div>
+        {/* Honesty labels */}
+        {isDemo ? (
+          <div className="map-demo-label">DEMO DATA · NOT LIVE DISASTER INFORMATION</div>
+        ) : (
+          showCyclone &&
+          isSimulated(cyclone) && (
+            <div className="map-demo-label">SIMULATED CYCLONE SCENARIO · NOT AN IMD FORECAST</div>
+          )
         )}
       </div>
     </div>

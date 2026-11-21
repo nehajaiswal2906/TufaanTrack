@@ -482,6 +482,39 @@
   }
 }
 
+/* ---------- CYCLONE TRACK ---------- */
+
+.track-arrow {
+  background: transparent;
+  border: none;
+}
+
+.track-arrow > div {
+  width: 18px;
+  height: 18px;
+  filter: drop-shadow(0 1px 3px #000000aa);
+}
+
+/* Small hover labels (track points) */
+.leaflet-tooltip {
+  color: #edf4fc;
+  background: #162a3f;
+  border: 1px solid #3a536d;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px #00000066;
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: 11px;
+}
+
+.leaflet-tooltip-top::before {
+  border-top-color: #3a536d;
+}
+
+.tt-popup-demo svg {
+  vertical-align: -1px;
+  margin-right: 3px;
+}
+
 /* ---------- NARROW WINDOWS ---------- */
 
 @media (max-width: 650px) {

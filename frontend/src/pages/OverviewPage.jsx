@@ -19,6 +19,21 @@ import StatCard from "../components/StatCard";
 import { ALL_PAGES } from "../config/navigation";
 import { useApi } from "../hooks/useApi";
 import { loadMapPoints, loadReportCount } from "../services/mapData";
+import { loadCycloneScenario } from "../services/cycloneData";
+
+// One-line summary of the cyclone for the Intelligence Feed
+function describeCyclone({ data, loading, error }) {
+  if (loading) return "Loading cyclone data…";
+  if (error) return "Cyclone data unavailable";
+  const track = data?.tracks[0];
+  if (!track) return "No cyclone track received";
+
+  const parts = [track.name];
+  if (track.category) parts.push(track.category);
+  if (track.movement) parts.push(`moving ${track.movement.direction.short}`);
+  if (data.zones.length) parts.push(`${data.zones.length} warning zones`);
+  return parts.join(" · ") + (track.simulated ? " (simulated)" : "");
+}
 
 // Every page except Overview itself, for the "Quick Access" grid
 const QUICK_LINKS = ALL_PAGES.filter((page) => page.path !== "/");
@@ -27,6 +42,7 @@ function OverviewPage() {
   // Load data from the backend
   const mapData = useApi(loadMapPoints);
   const reportCount = useApi(loadReportCount);
+  const cyclone = useApi(loadCycloneScenario);
 
   const points = mapData.data; // { settlement, shelter, hospital } or null
 
@@ -41,7 +57,7 @@ function OverviewPage() {
     {
       icon: Wind,
       title: "Cyclone Monitoring",
-      text: "Cyclone tracking view is in development"
+      text: describeCyclone(cyclone)
     },
     {
       icon: MapPin,
@@ -148,8 +164,9 @@ function OverviewPage() {
           <MapView
             height={430}
             data={points ?? { settlement: [], shelter: [], hospital: [] }}
+            cyclone={cyclone.data}
             isDemo={false}
-            loading={mapData.loading}
+            loading={mapData.loading || cyclone.loading}
             error={mapData.error}
             onRetry={mapData.retry}
           />
