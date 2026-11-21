@@ -1,4 +1,5 @@
 from typing import Optional
+from fastapi.middleware.cors import CORSMiddleware
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -37,6 +38,12 @@ class SOSRequest(BaseModel):
 
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # SAMPLE DATA - will be replaced with real data later
 SETTLEMENTS = [
