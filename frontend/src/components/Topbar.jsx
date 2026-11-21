@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Bell, Search, Menu, Clock } from "lucide-react";
+import { Menu, Clock } from "lucide-react";
+import ReportsBell from "./ReportsBell";
 
 // Formats the current time in Indian Standard Time
 function formatIST(date) {
@@ -14,7 +15,7 @@ function formatIST(date) {
 }
 
 // Top header: page breadcrumb + title, live IST clock and action buttons.
-function Topbar({ page, onMenuClick }) {
+function Topbar({ page, pathname, onMenuClick }) {
   const [now, setNow] = useState(() => new Date());
 
   // Update the clock every 30 seconds
@@ -49,12 +50,8 @@ function Topbar({ page, onMenuClick }) {
           <span>{formatIST(now)} IST</span>
         </div>
 
-        <button className="icon-button" title="Search (coming soon)" aria-label="Search">
-          <Search size={18} />
-        </button>
-        <button className="icon-button" title="Notifications (coming soon)" aria-label="Notifications">
-          <Bell size={18} />
-        </button>
+        {/* Re-checks the count each time the page changes */}
+        <ReportsBell key={pathname} />
         <div className="profile" title="TufaanTrack operator">TT</div>
       </div>
     </header>

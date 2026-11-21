@@ -86,12 +86,14 @@ export const HOSPITAL_PAGE = {
   types: HOSPITAL_TYPES,
 
   notice:
-    "Hospitals and health centres mapped in OpenStreetMap. Most facilities have no bed count recorded — " +
-    "these are shown as \"Not recorded\" rather than zero.",
+    "Hospitals and health centres mapped in OpenStreetMap. Bed counts are only shown when the data " +
+    "records them — a missing count is never shown as zero.",
 
   metric: {
     label: "Beds",
     sortLabel: "Beds (most first)",
+    // Only show beds when at least one facility has a recorded count
+    isAvailable: (items) => items.some((h) => h.beds > 0),
     value: (item) => (item.beds > 0 ? item.beds : null),
     display: (item) => (item.beds > 0 ? `${fmt(item.beds)} beds` : "Beds not recorded")
   },
@@ -108,5 +110,5 @@ export const HOSPITAL_PAGE = {
     ];
   },
 
-  notes: (item) => (item.beds > 0 ? [] : ["Bed count is not recorded in the data."])
+  notes: () => []
 };

@@ -17,9 +17,3 @@ export async function loadMapPoints() {
     hospital: featuresToPoints(hospitals, "hospital_id")
   };
 }
-
-// Counts the reports returned by GET /api/reports
-export async function loadReportCount() {
-  const reports = await api.getReports();
-  return Array.isArray(reports) ? reports.length : 0;
-}

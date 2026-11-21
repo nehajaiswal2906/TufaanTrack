@@ -35,7 +35,6 @@ function LiveMapPage() {
         height="max(460px, calc(100vh - 330px))"
         data={mapData.data ?? { settlement: [], shelter: [], hospital: [] }}
         cyclone={cyclone.data}
-        isDemo={false}
         loading={mapData.loading || cyclone.loading}
         error={mapData.error}
         onRetry={mapData.retry}

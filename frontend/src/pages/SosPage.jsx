@@ -307,7 +307,6 @@ function SosPage() {
         <MapView
           height="max(560px, calc(100vh - 330px))"
           data={mapData.data ?? { settlement: [], shelter: [], hospital: [] }}
-          isDemo={false}
           loading={mapData.loading}
           error={mapData.error}
           onRetry={mapData.retry}

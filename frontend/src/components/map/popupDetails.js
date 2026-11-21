@@ -46,12 +46,9 @@ export function getPopupDetails(categoryKey, item) {
 
   if (categoryKey === "hospital") {
     if (has(item.type)) rows.push({ icon: Tag, label: "Type", value: HOSPITAL_TYPES[item.type] ?? item.type });
-    if (has(item.beds)) {
-      rows.push({
-        icon: BedDouble,
-        label: "Beds",
-        value: item.beds > 0 ? formatNumber(item.beds) : "Not recorded"
-      });
+    // beds = 0 means "unknown" in the data, so only show real counts
+    if (item.beds > 0) {
+      rows.push({ icon: BedDouble, label: "Beds", value: formatNumber(item.beds) });
     }
   }
 

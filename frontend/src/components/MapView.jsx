@@ -23,7 +23,6 @@ import {
   CATEGORIES,
   TRACK_COLOR
 } from "../config/mapConfig";
-import { DEMO_MAP_DATA } from "../data/demoMapData";
 import { isSimulated } from "../services/cycloneData";
 import { flattenLatLngs } from "../utils/geojson";
 import { MARKER_ICONS, PICK_ICON } from "./map/markerIcons";
@@ -49,7 +48,6 @@ function ClickListener({ onClick }) {
 //   height   – map height, e.g. 430 or "70vh" (default 430)
 //   data     – { settlement: [...], shelter: [...], hospital: [...] }
 //   cyclone  – cyclone scenario from loadCycloneScenario(), or null
-//   isDemo   – true while using demo data (shows warning labels)
 //   loading  – true while data is being loaded from the backend
 //   error    – error message if loading failed
 //   onRetry  – function called by the "Try again" button
@@ -64,9 +62,8 @@ function ClickListener({ onClick }) {
 //   pickedPoint – [lat, lng] of a location picked by the user (shown as a pin)
 function MapView({
   height = 430,
-  data = DEMO_MAP_DATA,
+  data = null,
   cyclone = null,
-  isDemo = true,
   loading = false,
   error = null,
   onRetry,
@@ -114,7 +111,7 @@ function MapView({
   // When loading finishes, zoom the map so every location (and the cyclone) fits
   const hasFitted = useRef(false);
   useEffect(() => {
-    if (!map || isDemo || loading || hasFitted.current) return;
+    if (!map || loading || hasFitted.current) return;
 
     const allLatLngs = [
       ...Object.values(points).flat().map((item) => [item.latitude, item.longitude]),
@@ -124,7 +121,7 @@ function MapView({
 
     map.fitBounds(L.latLngBounds(allLatLngs), { padding: [30, 30] });
     hasFitted.current = true;
-  }, [map, points, cycloneLatLngs, fitCyclone, isDemo, loading]);
+  }, [map, points, cycloneLatLngs, fitCyclone, loading]);
 
   // The selected location (if any), searched across all categories
   const selectedItem = useMemo(
@@ -315,7 +312,6 @@ function MapView({
                         item={item}
                         categoryKey={key}
                         category={category}
-                        isDemo={isDemo}
                       />
                     </Popup>
                   </Marker>
@@ -355,14 +351,9 @@ function MapView({
           </div>
         )}
 
-        {/* Honesty labels */}
-        {isDemo ? (
-          <div className="map-demo-label">DEMO DATA · NOT LIVE DISASTER INFORMATION</div>
-        ) : (
-          showCyclone &&
-          isSimulated(cyclone) && (
-            <div className="map-demo-label">SIMULATED CYCLONE SCENARIO · NOT AN IMD FORECAST</div>
-          )
+        {/* Honesty label for the simulated cyclone scenario */}
+        {showCyclone && isSimulated(cyclone) && (
+          <div className="map-demo-label">SIMULATED CYCLONE SCENARIO · NOT AN IMD FORECAST</div>
         )}
       </div>
     </div>

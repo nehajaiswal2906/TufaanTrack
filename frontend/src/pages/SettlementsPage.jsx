@@ -143,7 +143,6 @@ function SettlementsPage() {
             height={MAP_HEIGHT}
             data={data.points}
             cyclone={cyclone.data}
-            isDemo={false}
             loading={cyclone.loading}
             selectedId={focusId ?? selectedVillageId}
             onSelect={handleMarkerClick}

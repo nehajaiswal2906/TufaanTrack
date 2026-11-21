@@ -51,6 +51,10 @@ function FacilityPage({ config }) {
 
   const data = settlementData.data;
   const items = data.points[config.categoryKey];
+
+  // Hide the metric (e.g. beds) everywhere if no facility has a value for it
+  const metricAvailable = config.metric.isAvailable ? config.metric.isAvailable(items) : true;
+  const pageConfig = metricAvailable ? config : { ...config, metric: null };
   const selected = items.find((f) => f.id === selectedId) ?? null;
 
   function select(facility) {
@@ -103,7 +107,7 @@ function FacilityPage({ config }) {
               <h2>{config.plural}</h2>
             </div>
           </div>
-          <FacilityList items={items} config={config} selectedId={selectedId} onSelect={select} />
+          <FacilityList items={items} config={pageConfig} selectedId={selectedId} onSelect={select} />
         </div>
 
         <div className="map-panel">
@@ -120,7 +124,6 @@ function FacilityPage({ config }) {
             data={data.points}
             cyclone={cyclone.data}
             roads={roads.data}
-            isDemo={false}
             loading={cyclone.loading}
             selectedId={focusId ?? selectedId}
             onSelect={handleMarkerClick}
@@ -134,7 +137,7 @@ function FacilityPage({ config }) {
               selected && (
                 <FacilityDetail
                   facility={selected}
-                  config={config}
+                  config={pageConfig}
                   settlements={data.settlements}
                   assessmentAvailable={data.assessmentAvailable}
                   onClose={() => {

@@ -38,7 +38,7 @@ function Layout() {
       )}
 
       <main className="content">
-        <Topbar page={page} onMenuClick={() => setSidebarOpen(true)} />
+        <Topbar page={page} pathname={location.pathname} onMenuClick={() => setSidebarOpen(true)} />
 
         <div className="page" key={location.pathname}>
           <Suspense fallback={<div className="page-message">Loading page…</div>}>

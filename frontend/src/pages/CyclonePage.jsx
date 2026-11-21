@@ -37,7 +37,6 @@ function CyclonePage() {
           height="max(480px, calc(100vh - 340px))"
           data={mapData.data}
           cyclone={cyclone.data}
-          isDemo={false}
           loading={cyclone.loading || mapData.loading}
           error={cyclone.error || mapData.error}
           onRetry={() => {

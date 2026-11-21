@@ -332,6 +332,29 @@
   border-color: #59d9e9;
 }
 
+/* Bell with the number of reports waiting for review */
+.bell-button {
+  position: relative;
+}
+
+.bell-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2a1a05;
+  background: #f3b65c;
+  border: 2px solid #101b2b;
+  border-radius: 9px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
 /* Hamburger button — only shown when the sidebar is a drawer */
 .menu-button {
   display: none;
@@ -832,6 +855,84 @@
 }
 
 /* =========================================
+   RESPONSE SNAPSHOT (Overview)
+========================================= */
+
+.snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.snapshot-panel .panel-heading {
+  margin-bottom: 12px;
+}
+
+.intel-footer.inline {
+  margin: 0;
+  padding: 0;
+  border: none;
+  gap: 4px;
+}
+
+.snapshot-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.snapshot-list li {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid #263b52;
+  font-size: 12.5px;
+}
+
+/* keep badges their natural size inside the grid */
+.snapshot-list li > .priority-badge {
+  justify-self: start;
+}
+
+.snapshot-list li:last-child {
+  border-bottom: none;
+}
+
+.snapshot-count {
+  overflow: hidden;
+  color: #c1d2e4;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.snapshot-count strong {
+  color: #f4f8ff;
+}
+
+.snapshot-meta {
+  color: #8ea3b9;
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.snapshot-note {
+  margin-top: 10px;
+  color: #6f849b;
+  font-size: 10.5px;
+}
+
+.panel-message {
+  color: #a8bbcf;
+  font-size: 12px;
+}
+
+.panel-message.error {
+  color: #ff8a98;
+}
+
+/* =========================================
    QUICK ACCESS GRID
 ========================================= */
 
@@ -948,35 +1049,6 @@
   line-height: 1.6;
 }
 
-.feature-list {
-  list-style: none;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin: 26px 0 28px;
-  text-align: left;
-}
-
-.feature-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 9px;
-  padding: 12px 13px;
-  color: #d0deec;
-  background: #172a3f;
-  border: 1px solid #2f4760;
-  border-radius: 9px;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.feature-list svg {
-  flex-shrink: 0;
-  margin-top: 2px;
-  color: #59d9e9;
-}
-
 /* =========================================
    FOOTER
 ========================================= */
@@ -1002,6 +1074,10 @@
 ========================================= */
 
 @media (max-width: 1150px) {
+  .snapshot-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .workspace {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1055,6 +1131,14 @@
 }
 
 @media (max-width: 650px) {
+  .snapshot-list li {
+    grid-template-columns: 130px minmax(0, 1fr);
+  }
+
+  .snapshot-meta {
+    display: none;
+  }
+
   .content {
     padding: 18px 15px;
   }
@@ -1126,7 +1210,7 @@
     grid-template-columns: 1fr;
   }
 
-  .top-actions .icon-button:not(.menu-button) {
+  .profile {
     display: none;
   }
 

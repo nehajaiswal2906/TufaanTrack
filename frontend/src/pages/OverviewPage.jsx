@@ -18,7 +18,13 @@ import MapView from "../components/MapView";
 import StatCard from "../components/StatCard";
 import { ALL_PAGES } from "../config/navigation";
 import { useApi } from "../hooks/useApi";
-import { loadMapPoints, loadReportCount } from "../services/mapData";
+import { loadMapPoints } from "../services/mapData";
+import { loadReports } from "../services/reportData";
+import { loadAssessment } from "../services/assessmentData";
+import PriorityBadge from "../components/PriorityBadge";
+import StatusBadge from "../components/reports/StatusBadge";
+import { PRIORITY_ORDER } from "../config/priority";
+import { reportTypeLabel } from "../config/reports";
 import { loadCycloneScenario } from "../services/cycloneData";
 
 // One-line summary of the cyclone for the Intelligence Feed
@@ -41,7 +47,8 @@ const QUICK_LINKS = ALL_PAGES.filter((page) => page.path !== "/");
 function OverviewPage() {
   // Load data from the backend
   const mapData = useApi(loadMapPoints);
-  const reportCount = useApi(loadReportCount);
+  const reports = useApi(loadReports);
+  const assessment = useApi(loadAssessment);
   const cyclone = useApi(loadCycloneScenario);
 
   const points = mapData.data; // { settlement, shelter, hospital } or null
@@ -50,7 +57,7 @@ function OverviewPage() {
     { label: "SETTLEMENTS", icon: MapPin, value: points?.settlement.length, caption: "Monitored locations", to: "/settlements", state: mapData },
     { label: "CANDIDATE SHELTERS", icon: Shield, value: points?.shelter.length, caption: "Shelter locations (unverified)", to: "/shelters", state: mapData },
     { label: "MEDICAL FACILITIES", icon: Hospital, value: points?.hospital.length, caption: "Hospitals & health centres", to: "/medical", state: mapData },
-    { label: "EMERGENCY REPORTS", icon: Radio, value: reportCount.data, caption: "Community submissions", to: "/reports", state: reportCount }
+    { label: "EMERGENCY REPORTS", icon: Radio, value: reports.data?.length, caption: "Community submissions", to: "/reports", state: reports }
   ];
 
   const feed = [
@@ -165,7 +172,6 @@ function OverviewPage() {
             height={430}
             data={points ?? { settlement: [], shelter: [], hospital: [] }}
             cyclone={cyclone.data}
-            isDemo={false}
             loading={mapData.loading || cyclone.loading}
             error={mapData.error}
             onRetry={mapData.retry}
@@ -196,6 +202,85 @@ function OverviewPage() {
             <ArrowRight size={15} />
           </Link>
         </aside>
+      </section>
+
+      {/* ---------- RESPONSE SNAPSHOT ---------- */}
+      <section className="section-title spaced">
+        <div>
+          <h2>Response Snapshot</h2>
+          <p>Impact assessment and the latest community reports</p>
+        </div>
+      </section>
+
+      <section className="snapshot-grid">
+        <div className="map-panel snapshot-panel">
+          <div className="panel-heading">
+            <div>
+              <span className="eyebrow">IMPACT ASSESSMENT</span>
+              <h2>Villages by priority</h2>
+            </div>
+            <Link to="/assessment" className="intel-footer inline">
+              <span>Open</span> <ArrowRight size={14} />
+            </Link>
+          </div>
+          {assessment.loading && <p className="panel-message">Loading assessment…</p>}
+          {assessment.error && <p className="panel-message error">{assessment.error}</p>}
+          {assessment.data && (
+            <>
+              <ul className="snapshot-list">
+                {PRIORITY_ORDER.map((p) => {
+                  const group = assessment.data.filter((a) => a.priority === p);
+                  const people = group.reduce((sum, a) => sum + (a.exposed_population ?? 0), 0);
+                  return (
+                    <li key={p}>
+                      <PriorityBadge priority={p} />
+                      <span className="snapshot-count">
+                        <strong>{group.length}</strong> {group.length === 1 ? "village" : "villages"}
+                      </span>
+                      <span className="snapshot-meta">{people.toLocaleString("en-IN")} people</span>
+                    </li>
+                  );
+                })}
+              </ul>
+              <p className="snapshot-note">From the backend's assessment of a simulated scenario.</p>
+            </>
+          )}
+        </div>
+
+        <div className="map-panel snapshot-panel">
+          <div className="panel-heading">
+            <div>
+              <span className="eyebrow">EMERGENCY REPORTS</span>
+              <h2>Latest reports</h2>
+            </div>
+            <Link to="/reports" className="intel-footer inline">
+              <span>View all</span> <ArrowRight size={14} />
+            </Link>
+          </div>
+          {reports.loading && <p className="panel-message">Loading reports…</p>}
+          {reports.error && <p className="panel-message error">{reports.error}</p>}
+          {reports.data && reports.data.length === 0 && (
+            <p className="panel-message">
+              No reports yet. <Link to="/sos" className="link-button">Submit an SOS</Link>
+            </p>
+          )}
+          {reports.data && reports.data.length > 0 && (
+            <ul className="snapshot-list">
+              {[...reports.data]
+                .sort((a, b) => b.report_id - a.report_id)
+                .slice(0, 4)
+                .map((r) => (
+                  <li key={r.report_id}>
+                    <StatusBadge status={r.status} />
+                    <span className="snapshot-count">
+                      <strong>{reportTypeLabel(r.report_type)}</strong>
+                    </span>
+                    <span className="snapshot-meta">#{r.report_id}</span>
+                  </li>
+                ))}
+            </ul>
+          )}
+        </div>
       </section>
 
       {/* ---------- QUICK ACCESS ---------- */}

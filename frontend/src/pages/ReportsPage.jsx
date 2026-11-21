@@ -212,7 +212,6 @@ function ReportsPage() {
             height={MAP_HEIGHT}
             data={mapData.data ?? { settlement: [], shelter: [], hospital: [] }}
             reports={reportPoints}
-            isDemo={false}
             loading={mapData.loading}
             initialLayers={{ settlement: false, shelter: false, hospital: false }}
             selectedId={selectedId}

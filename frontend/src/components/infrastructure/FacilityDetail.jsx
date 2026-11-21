@@ -34,10 +34,12 @@ function FacilityDetail({ facility, config, settlements, assessmentAvailable, on
           <span className="fact-label"><Tag size={12} /> Type</span>
           <strong className="fact-text">{typeLabel(config.types, facility.type)}</strong>
         </div>
-        <div className="fact">
-          <span className="fact-label">{config.metric.label}</span>
-          <strong className="fact-text">{config.metric.display(facility)}</strong>
-        </div>
+        {config.metric && (
+          <div className="fact">
+            <span className="fact-label">{config.metric.label}</span>
+            <strong className="fact-text">{config.metric.display(facility)}</strong>
+          </div>
+        )}
         <div className="fact">
           <span className="fact-label"><Mountain size={12} /> Elevation</span>
           <strong>{facility.elevation_m != null ? `${facility.elevation_m} m` : "Not available"}</strong>

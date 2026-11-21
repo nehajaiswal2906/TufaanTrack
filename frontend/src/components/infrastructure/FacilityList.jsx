@@ -19,7 +19,7 @@ function FacilityList({ items, config, selectedId, onSelect }) {
     const text = query.trim().toLowerCase();
     const compare = {
       name: (a, b) => (a.name ?? "").localeCompare(b.name ?? ""),
-      metric: (a, b) => (config.metric.value(b) ?? -1) - (config.metric.value(a) ?? -1),
+      metric: (a, b) => (config.metric?.value(b) ?? -1) - (config.metric?.value(a) ?? -1),
       elevation: (a, b) => (a.elevation_m ?? Infinity) - (b.elevation_m ?? Infinity)
     }[sortBy];
 
@@ -64,7 +64,7 @@ function FacilityList({ items, config, selectedId, onSelect }) {
           Sort by
           <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
             <option value="name">Name (A–Z)</option>
-            <option value="metric">{config.metric.sortLabel}</option>
+            {config.metric && <option value="metric">{config.metric.sortLabel}</option>}
             <option value="elevation">Elevation (lowest first)</option>
           </select>
         </label>
@@ -92,7 +92,8 @@ function FacilityList({ items, config, selectedId, onSelect }) {
                 <div className="row-main">
                   <strong>{facility.name || "Unnamed facility"}</strong>
                   <span>
-                    {typeLabel(config.types, facility.type)} · {config.metric.display(facility)}
+                    {typeLabel(config.types, facility.type)}
+                    {config.metric && ` · ${config.metric.display(facility)}`}
                   </span>
                 </div>
               </button>

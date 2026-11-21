@@ -3,7 +3,7 @@ import { getPopupDetails } from "./popupDetails";
 
 // Content shown inside a marker popup.
 // Only shows details that actually exist in the data — nothing is guessed.
-function MapPopup({ item, categoryKey, category, isDemo }) {
+function MapPopup({ item, categoryKey, category }) {
   const Icon = category.icon;
   const { rows, notes } = getPopupDetails(categoryKey, item);
 
@@ -38,7 +38,6 @@ function MapPopup({ item, categoryKey, category, isDemo }) {
         <p className="tt-popup-note" key={note}>{note}</p>
       ))}
 
-      {isDemo && <p className="tt-popup-demo">Demonstration data · not a real location</p>}
     </div>
   );
 }
