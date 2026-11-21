@@ -8,7 +8,6 @@ def haversine_km(lat1, lon1, lat2, lon2):
     """
     earth_radius_km = 6371.0
 
-    # Convert degrees to radians
     lat1_rad = math.radians(lat1)
     lon1_rad = math.radians(lon1)
     lat2_rad = math.radians(lat2)
@@ -26,20 +25,19 @@ def haversine_km(lat1, lon1, lat2, lon2):
     return earth_radius_km * c
 
 
-def is_point_in_polygon(lon, lat, polygon_coords):
+def is_point_in_ring(lon, lat, ring_coords):
     """
-    Checks if a point (lon, lat) is inside a polygon using the Ray-Casting algorithm.
-    polygon_coords is a list of [longitude, latitude] pairs forming the outer ring.
+    Checks if a point (lon, lat) is inside a single polygon ring using Ray-Casting.
+    ring_coords is a list of [longitude, latitude] pairs.
     """
     inside = False
-    num_points = len(polygon_coords)
+    num_points = len(ring_coords)
 
     j = num_points - 1
     for i in range(num_points):
-        xi, yi = polygon_coords[i][0], polygon_coords[i][1]
-        xj, yj = polygon_coords[j][0], polygon_coords[j][1]
+        xi, yi = ring_coords[i][0], ring_coords[i][1]
+        xj, yj = ring_coords[j][0], ring_coords[j][1]
 
-        # Check if the ray crosses this polygon edge
         intersect = ((yi > lat) != (yj > lat)) and (
             lon < (xj - xi) * (lat - yi) / (yj - yi + 1e-12) + xi
         )
@@ -51,19 +49,34 @@ def is_point_in_polygon(lon, lat, polygon_coords):
     return inside
 
 
+def is_point_in_warning_zone(lon, lat, geometry):
+    """
+    Supports both GeoJSON Polygon and MultiPolygon geometries.
+    """
+    geom_type = geometry.get("type")
+    coords = geometry.get("coordinates", [])
+
+    if not coords:
+        return False
+
+    if geom_type == "Polygon":
+        return is_point_in_ring(lon, lat, coords[0])
+
+    if geom_type == "MultiPolygon":
+        return any(is_point_in_ring(lon, lat, polygon[0]) for polygon in coords if polygon)
+
+    return False
+
+
 def run_assessment(villages, shelters, hospitals, warning_zone, reports):
     """
     Evaluates cyclone exposure, nearby facilities, unverified road blockages,
     and assigns transparent priority levels for villages inside the warning zone.
     """
-    # Extract outer ring coordinates from the GeoJSON Feature Polygon
-    # GeoJSON coordinates for Polygon are nested: [[[lon, lat], [lon, lat], ...]]
     geometry = warning_zone.get("geometry", {})
-    coordinates = geometry.get("coordinates", [])
-    if not coordinates:
+    if not geometry.get("coordinates"):
         return []
 
-    outer_ring = coordinates[0]
     assessment_results = []
 
     for village in villages:
@@ -71,7 +84,7 @@ def run_assessment(villages, shelters, hospitals, warning_zone, reports):
         v_lat = village["latitude"]
 
         # 1. Check if the village is inside the warning zone
-        if not is_point_in_polygon(v_lon, v_lat, outer_ring):
+        if not is_point_in_warning_zone(v_lon, v_lat, geometry):
             continue
 
         village_id = village["village_id"]
