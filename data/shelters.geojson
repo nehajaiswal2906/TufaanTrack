@@ -1,0 +1,653 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.567288,
+          19.7401157
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0001",
+        "name": "Primary / High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8432892,
+          19.805331
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0002",
+        "name": "Primary / High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0889677,
+          19.8902639
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0003",
+        "name": "Konark High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0909517,
+          19.8909253
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0004",
+        "name": "Sevashram School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1035051,
+          19.8925971
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0005",
+        "name": "Govt High School Konark",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0871638,
+          19.8926705
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0006",
+        "name": "Vinoba Bhabe Vidyamandir",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8015607,
+          19.8947436
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0007",
+        "name": "Bhargabi High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1236518,
+          19.8958258
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0008",
+        "name": "Odisha Adarsha Vidhyalaya",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8089251,
+          19.8968026
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0009",
+        "name": "Girl's High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1162689,
+          19.8979684
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0010",
+        "name": "Kunja Primary School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1508082,
+          19.9103717
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0011",
+        "name": "Saraswati Sishu Mandir Balidokan",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1523342,
+          19.9124713
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0012",
+        "name": "Bateswar High School Balidokan",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2300696,
+          19.9382432
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0013",
+        "name": "Primary / High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2297881,
+          19.9389037
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0014",
+        "name": "Janata High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2662961,
+          19.9769743
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0015",
+        "name": "Astaranga Govt High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2543095,
+          19.9815062
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0016",
+        "name": "Kuhudi Govt U.G.U.P School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0185446,
+          19.9828494
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0017",
+        "name": "Nigamananda Govt High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0192313,
+          19.983277
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0018",
+        "name": "Govt Girls High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.2180135,
+          19.9970321
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0019",
+        "name": "Dahikhia Primary School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1942973,
+          20.0029564
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0020",
+        "name": "Govt Nodal High School Kakatpur",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.175015,
+          20.0075686
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0021",
+        "name": "Aadarsh Urnata Higher Secondary School Othaka",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1175375,
+          20.0131398
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0022",
+        "name": "Kolar Primary School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1425566,
+          20.029246
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0023",
+        "name": "Nayahat High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1368944,
+          20.0318696
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0024",
+        "name": "Singhapania Primary School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1298912,
+          20.0331447
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0025",
+        "name": "Saraswati Sisu Vidya Mandira",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 13
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.127992,
+          20.0350731
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0026",
+        "name": "Jogeswarpur Primary School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1273769,
+          20.037115
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0027",
+        "name": "Young Phoenix Public School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1166359,
+          20.0445786
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0028",
+        "name": "Gada Amaraprashad Primary School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1132957,
+          20.0508677
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0029",
+        "name": "Amareswar High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.1040485,
+          20.0549314
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0030",
+        "name": "Venkateswar Public School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0986895,
+          20.0571412
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0031",
+        "name": "Government Primary School Tulsipur",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 13
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0813473,
+          20.0573626
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0032",
+        "name": "AB'S Oxford International School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0956538,
+          20.0581959
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0033",
+        "name": "Prachi Girls High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0934712,
+          20.0585507
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0034",
+        "name": "Tulasipur High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8705783,
+          20.111715
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0035",
+        "name": "Haripur Adarsha High School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.8649748,
+          20.1159373
+        ]
+      },
+      "properties": {
+        "shelter_id": "PURI-S0036",
+        "name": "Government UP School",
+        "type": "school",
+        "capacity": 50,
+        "source": "osm_candidate",
+        "elevation_m": 16
+      }
+    }
+  ]
+}

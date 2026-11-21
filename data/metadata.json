@@ -1,0 +1,36 @@
+{
+  "files": {
+    "villages.geojson": {
+      "source": "OpenStreetMap via Overpass API (Puri district admin_level 5, bounds 85.0-86.5, 19.4-20.6) + Open-Meteo Elevation API (Copernicus DEM 90m)",
+      "date": "2026-11-22",
+      "reliability": "osm_verified_with_assumed_default_pop",
+      "simulated": false,
+      "feature_count": 72,
+      "notes": "72 settlements (villages, hamlets, localities) in Puri district mapped in OSM. Water bodies (Chilka Lake locality) filtered out. Elevations enriched from Open-Meteo Copernicus DEM 90m (integer/decimal whole-meter resolution; near-shore pixels approximate). Population from OSM tags where present (pop_source='osm', 5 settlements); otherwise assumed default values: 500 for village, 150 for hamlet/locality, 50 for isolated_dwelling (pop_source='estimated_default', assumed default values, not Census data; 67 settlements)."
+    },
+    "shelters.geojson": {
+      "source": "OpenStreetMap via Overpass API (Puri district admin_level 5, bounds 85.0-86.5, 19.4-20.6) + Open-Meteo Elevation API (Copernicus DEM 90m)",
+      "date": "2026-11-22",
+      "reliability": "osm_candidate_shelters",
+      "simulated": false,
+      "feature_count": 36,
+      "notes": "Schools mapped in OpenStreetMap (amenity=school), used as CANDIDATE shelters. No dedicated cyclone shelters are mapped in OSM for Puri. Whether each school is an actual designated shelter, its structural safety, and its capacity are UNVERIFIED. Capacity 50 is an assumed default. Labeled type='school', source='osm_candidate'. Ground elevations from Open-Meteo Copernicus DEM 90m."
+    },
+    "hospitals.geojson": {
+      "source": "OpenStreetMap via Overpass API (Puri district admin_level 5, bounds 85.0-86.5, 19.4-20.6) + Open-Meteo Elevation API (Copernicus DEM 90m)",
+      "date": "2026-11-22",
+      "reliability": "osm_verified",
+      "simulated": false,
+      "feature_count": 42,
+      "notes": "42 healthcare facilities in Puri district mapped in OSM (1 district hospital, 1 CHC, 1 PHC, 22 hospitals, 17 clinics). Bed counts use OSM tag if present, otherwise 0 indicating unknown count (source='osm'). Ground elevations from Open-Meteo Copernicus DEM 90m."
+    },
+    "cyclone_warning.geojson": {
+      "source": "Simulated cyclone scenario for ASTRA 2026 hackathon demonstration",
+      "date": "2026-11-22",
+      "reliability": "simulated — not a real IMD warning",
+      "simulated": true,
+      "feature_count": 3,
+      "notes": "1 RED polygon (surge 4.5m, covers 20 low-lying coastal villages), 1 ORANGE polygon (surge 2.0m, covers 10 further villages), 1 simulated cyclone track LineString (VSCS category approaching from Bay of Bengal to Puri coast). Calibrated so 42 villages (58.3%) lie in safe/unaffected areas (>= 40% target)."
+    }
+  }
+}
