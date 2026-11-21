@@ -1,0 +1,511 @@
+/* =========================================
+   TUFAANTRACK — MAP STYLES (Module 2)
+   Everything that styles the Leaflet map lives here.
+========================================= */
+
+.map-view {
+  width: 100%;
+}
+
+/* Short help text above the map (Live Map page) */
+.map-help {
+  margin: -6px 0 4px;
+  color: #a8bbcf;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* ---------- CATEGORY FILTER CHIPS ---------- */
+
+.map-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 8px 0 11px;
+  color: #8ea3b9;
+  background: #172a3f;
+  border: 1px solid #2f4760;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.filter-chip svg {
+  color: #6f849b;
+}
+
+.filter-chip:hover {
+  border-color: #4a6683;
+  color: #d5e5f2;
+}
+
+/* Chip switched ON: uses the category colour */
+.filter-chip.on {
+  color: #edf4fc;
+  background: color-mix(in srgb, var(--chip-color) 16%, #172a3f);
+  border-color: color-mix(in srgb, var(--chip-color) 65%, transparent);
+}
+
+.filter-chip.on svg {
+  color: var(--chip-color);
+}
+
+.chip-count {
+  min-width: 20px;
+  padding: 1px 6px;
+  color: #c1d2e4;
+  background: #0d1a2a;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ---------- MAP FRAME ---------- */
+
+/* The box that holds the map and all overlays */
+.map-frame {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  overflow: hidden;
+  border: 1px solid #2f4760;
+  border-radius: 12px;
+  background: #0e1a28;
+}
+
+/* In fullscreen, fill the whole screen */
+.map-frame:fullscreen {
+  height: 100vh !important;
+  border-radius: 0;
+  border: none;
+}
+
+.leaflet-map {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: #0e1a28;
+  font-family: "DM Sans", Arial, sans-serif;
+}
+
+/* Darkens the free OpenStreetMap tiles to match the navy theme */
+.dark-tiles {
+  filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9) saturate(0.6);
+}
+
+/* ---------- CUSTOM MARKERS ---------- */
+
+.tt-marker {
+  background: transparent;
+  border: none;
+}
+
+.tt-marker-pin {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pin-color);
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--pin-color) 30%, transparent),
+    0 3px 10px #00000080;
+  transition: transform 0.15s ease;
+}
+
+.tt-marker:hover .tt-marker-pin {
+  transform: scale(1.12);
+}
+
+/* ---------- LEAFLET BUILT-IN CONTROLS (dark theme) ---------- */
+
+.leaflet-bar,
+.leaflet-control-layers {
+  border: 1px solid #3a536d !important;
+  border-radius: 9px !important;
+  box-shadow: 0 4px 14px #00000059 !important;
+  overflow: hidden;
+}
+
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  color: #d5e5f2;
+  background: #162a3f;
+  border-bottom-color: #3a536d;
+}
+
+.leaflet-bar a:hover {
+  color: #59d9e9;
+  background: #1f3a54;
+}
+
+.leaflet-control-layers {
+  color: #d5e5f2;
+  background: #162a3f;
+}
+
+.leaflet-control-layers-expanded {
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.leaflet-control-layers-toggle,
+.leaflet-retina .leaflet-control-layers-toggle {
+  width: 36px !important;
+  height: 36px !important;
+  background-color: #162a3f;
+  /* Light "layers" icon to match the dark theme */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d5e5f2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z'/%3E%3Cpath d='M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12'/%3E%3Cpath d='M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17'/%3E%3C/svg%3E") !important;
+  background-size: 18px 18px !important;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.leaflet-control-layers-toggle:hover {
+  background-color: #1f3a54;
+}
+
+.leaflet-control-scale-line {
+  color: #d5e5f2;
+  background: #0e1a28cc;
+  border-color: #8ea3b9;
+}
+
+.leaflet-control-attribution {
+  color: #8ea3b9 !important;
+  background: #0e1a28cc !important;
+  font-size: 9px;
+}
+
+.leaflet-control-attribution a {
+  color: #59d9e9 !important;
+}
+
+/* ---------- POPUPS (dark theme) ---------- */
+
+.leaflet-popup-content-wrapper {
+  color: #edf4fc;
+  background: #162a3f;
+  border: 1px solid #3a536d;
+  border-radius: 11px;
+  box-shadow: 0 10px 28px #00000080;
+}
+
+.leaflet-popup-tip {
+  background: #162a3f;
+  border: 1px solid #3a536d;
+}
+
+.leaflet-popup-content {
+  margin: 14px 16px;
+  min-width: 210px;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: #8ea3b9;
+  top: 6px;
+  right: 6px;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+  color: #59d9e9;
+}
+
+.tt-popup-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 14px;
+}
+
+.tt-popup-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.tt-popup-type {
+  display: block;
+  color: #8ea3b9;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.tt-popup h4 {
+  margin-top: 1px;
+  color: #f4f8ff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.tt-popup-details {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #2f4760;
+}
+
+.tt-popup-details > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 3px 0;
+  font-size: 11px;
+}
+
+.tt-popup-details dt {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #8ea3b9;
+}
+
+.tt-popup-details dd {
+  color: #edf4fc;
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.tt-popup-demo {
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+  padding: 6px 8px;
+  color: #f6c47c;
+  background: #3a2f1c;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* ---------- OUR OWN CONTROLS (reset, fit, fullscreen) ---------- */
+
+.map-controls {
+  position: absolute;
+  top: 92px; /* just under the + / − zoom buttons */
+  left: 10px;
+  z-index: 800;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #3a536d;
+  border-radius: 9px;
+  box-shadow: 0 4px 14px #00000059;
+}
+
+.map-controls button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d5e5f2;
+  background: #162a3f;
+  border: none;
+  border-bottom: 1px solid #3a536d;
+  cursor: pointer;
+}
+
+.map-controls button:last-child {
+  border-bottom: none;
+}
+
+.map-controls button:hover:not(:disabled) {
+  color: #59d9e9;
+  background: #1f3a54;
+}
+
+.map-controls button:disabled {
+  color: #4f647a;
+  cursor: not-allowed;
+}
+
+/* ---------- LEGEND (on the map, bottom-left) ---------- */
+
+.map-legend-panel {
+  position: absolute;
+  left: 10px;
+  bottom: 12px;
+  z-index: 800;
+  min-width: 170px;
+  color: #d5e5f2;
+  background: #0f1d2ee6;
+  border: 1px solid #3a536d;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px #00000059;
+  backdrop-filter: blur(4px);
+}
+
+.legend-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 11px;
+  color: #8ea3b9;
+  background: transparent;
+  border: none;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+}
+
+.legend-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 2px 11px 11px;
+  font-size: 11px;
+}
+
+.legend-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-pin {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #ffffff;
+  border-radius: 50%;
+}
+
+.legend-area {
+  width: 18px;
+  height: 12px;
+  flex-shrink: 0;
+  border: 2px solid;
+  border-radius: 3px;
+}
+
+.legend-line {
+  width: 18px;
+  flex-shrink: 0;
+  border-top: 3px dashed;
+}
+
+/* ---------- DEMO LABEL (top-centre) ---------- */
+
+.map-demo-label {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 800;
+  padding: 6px 11px;
+  color: #ffbd69;
+  background: #081422e6;
+  border: 1px solid #6b5630;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ---------- DATA NOTES IN POPUPS ---------- */
+
+.tt-popup-note {
+  margin: 8px 0 0 !important;
+  padding: 6px 8px;
+  color: #c9dceb;
+  background: #1d3550;
+  border-left: 2px solid #f3b65c;
+  border-radius: 4px;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+/* ---------- LOADING / ERROR OVERLAY ---------- */
+
+.map-status {
+  position: absolute;
+  inset: 0;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  color: #d5e5f2;
+  background: #0e1a28cc;
+  font-size: 13px;
+  text-align: center;
+}
+
+.map-status svg {
+  color: #59d9e9;
+}
+
+.map-status.error svg {
+  color: #ff8a98;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- NARROW WINDOWS ---------- */
+
+@media (max-width: 650px) {
+  .map-demo-label {
+    top: auto;
+    bottom: 28px; /* sits above the map credits */
+    left: auto;
+    right: 10px;
+    transform: none;
+    font-size: 8px;
+    white-space: normal;
+    max-width: 130px;
+    text-align: right;
+  }
+
+  .leaflet-control-scale {
+    display: none;
+  }
+
+  .map-legend-panel {
+    min-width: 0;
+  }
+
+  .filter-chip {
+    font-size: 11px;
+  }
+}
