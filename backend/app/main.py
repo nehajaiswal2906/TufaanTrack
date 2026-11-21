@@ -1,4 +1,5 @@
 import json
+import sys
 from pathlib import Path
 from typing import Optional
 
@@ -168,3 +169,48 @@ def update_status(report_id: int, update: StatusUpdate):
     result = report_to_dict(report)
     db.close()
     return result
+
+# ---------- IMPACT ASSESSMENT (Member 4's module) ----------
+# Let Python find Member 4's file in the analysis folder
+sys.path.append(str(DATA_FOLDER.parent / "analysis"))
+from impact_assessment import run_assessment
+
+
+def to_plain_list(collection):
+    # Turns map-format data into simple dicts with latitude and longitude
+    items = []
+    for f in collection["features"]:
+        if f["geometry"]["type"] != "Point":
+            continue
+        lon, lat = f["geometry"]["coordinates"]
+        item = dict(f["properties"])
+        item["longitude"] = lon
+        item["latitude"] = lat
+        items.append(item)
+    return items
+
+
+def combine_zones():
+    # Joins the RED and ORANGE zones into one shape for Member 4's function
+    polygons = []
+    for f in CYCLONE_FILE["features"]:
+        geo = f["geometry"]
+        if geo["type"] == "Polygon":
+            polygons.append(geo["coordinates"])
+        elif geo["type"] == "MultiPolygon":
+            polygons.extend(geo["coordinates"])
+    return {"geometry": {"type": "MultiPolygon", "coordinates": polygons}}
+
+
+@app.get("/api/assessment")
+def get_assessment():
+    db = SessionLocal()
+    reports = [report_to_dict(r) for r in db.query(Report).all()]
+    db.close()
+    return run_assessment(
+        to_plain_list(VILLAGES),
+        to_plain_list(SHELTERS),
+        to_plain_list(HOSPITALS),
+        combine_zones(),
+        reports,
+    )
