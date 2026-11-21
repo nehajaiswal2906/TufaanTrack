@@ -1,6 +1,6 @@
 from typing import Optional
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, Integer, String, Float
 from sqlalchemy.orm import declarative_base, sessionmaker
@@ -95,5 +95,46 @@ def create_sos(sos: SOSRequest):
         "longitude": report.longitude,
         "status": report.status,
     }
+    db.close()
+    return result
+
+
+class StatusUpdate(BaseModel):
+    status: str
+
+
+def report_to_dict(report):
+    return {
+        "report_id": report.report_id,
+        "report_type": report.report_type,
+        "description": report.description,
+        "village_id": report.village_id,
+        "latitude": report.latitude,
+        "longitude": report.longitude,
+        "status": report.status,
+    }
+
+
+@app.get("/api/reports")
+def get_reports():
+    db = SessionLocal()
+    reports = db.query(Report).all()
+    result = [report_to_dict(r) for r in reports]
+    db.close()
+    return result
+
+
+@app.patch("/api/reports/{report_id}/status")
+def update_status(report_id: int, update: StatusUpdate):
+    if update.status not in ["UNVERIFIED", "VERIFIED", "REJECTED"]:
+        raise HTTPException(status_code=400, detail="Invalid status")
+    db = SessionLocal()
+    report = db.query(Report).filter(Report.report_id == report_id).first()
+    if report is None:
+        db.close()
+        raise HTTPException(status_code=404, detail="Report not found")
+    report.status = update.status
+    db.commit()
+    result = report_to_dict(report)
     db.close()
     return result
