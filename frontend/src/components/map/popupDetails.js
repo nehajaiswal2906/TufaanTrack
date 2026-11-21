@@ -7,25 +7,7 @@
 // =========================================
 
 import { Users, Mountain, Hash, Tag, BedDouble, Database } from "lucide-react";
-
-const SHELTER_TYPES = {
-  cyclone_shelter: "Cyclone shelter",
-  school: "School (candidate shelter)",
-  community_hall: "Community hall"
-};
-
-const HOSPITAL_TYPES = {
-  district_hospital: "District hospital",
-  CHC: "Community Health Centre (CHC)",
-  PHC: "Primary Health Centre (PHC)",
-  hospital: "Hospital",
-  clinic: "Clinic"
-};
-
-const SOURCES = {
-  osm: "OpenStreetMap",
-  osm_candidate: "OpenStreetMap (candidate)"
-};
+import { SHELTER_TYPES, HOSPITAL_TYPES, SOURCES } from "../../config/facilityTypes";
 
 const formatNumber = (n) => Number(n).toLocaleString("en-IN");
 const has = (value) => value !== null && value !== undefined && value !== "";

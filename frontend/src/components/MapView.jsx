@@ -5,6 +5,8 @@ import {
   Marker,
   Popup,
   CircleMarker,
+  GeoJSON,
+  Tooltip,
   LayersControl,
   ScaleControl
 } from "react-leaflet";
@@ -44,6 +46,8 @@ const EMPTY_DATA = { settlement: [], shelter: [], hospital: [] };
 //   selectedId – ID of the location to highlight (the map flies to it)
 //   onSelect   – called with (categoryKey, item) when a marker is clicked
 //   sidePanel  – extra content shown inside the map, on the right
+//   fitCyclone – include the cyclone track when choosing the first view (default true)
+//   roads      – GeoJSON FeatureCollection of roads/bridges to draw (optional)
 function MapView({
   height = 430,
   data = DEMO_MAP_DATA,
@@ -55,7 +59,9 @@ function MapView({
   initialLayers = {},
   selectedId = null,
   onSelect,
-  sidePanel = null
+  sidePanel = null,
+  fitCyclone = true,
+  roads = null
 }) {
   const [map, setMap] = useState(null); // the Leaflet map, once it's ready
   const frameRef = useRef(null); // the box around the map (for fullscreen)
@@ -94,13 +100,13 @@ function MapView({
 
     const allLatLngs = [
       ...Object.values(points).flat().map((item) => [item.latitude, item.longitude]),
-      ...cycloneLatLngs
+      ...(fitCyclone ? cycloneLatLngs : [])
     ];
     if (allLatLngs.length === 0) return;
 
     map.fitBounds(L.latLngBounds(allLatLngs), { padding: [30, 30] });
     hasFitted.current = true;
-  }, [map, points, cycloneLatLngs, isDemo, loading]);
+  }, [map, points, cycloneLatLngs, fitCyclone, isDemo, loading]);
 
   // The selected location (if any), searched across all categories
   const selectedItem = useMemo(
@@ -203,6 +209,18 @@ function MapView({
 
           <ScaleControl position="bottomright" imperial={false} />
 
+          {/* Roads and bridges, only if the backend sends any */}
+          {roads?.features?.length > 0 && (
+            <GeoJSON
+              data={roads}
+              style={{ color: "#d5e5f2", weight: 2, opacity: 0.8 }}
+              onEachFeature={(feature, layer) => {
+                const name = feature.properties?.name;
+                if (name) layer.bindTooltip(String(name));
+              }}
+            />
+          )}
+
           {/* Cyclone track and warning zones (drawn under the markers) */}
           {showCyclone && <CycloneLayers scenario={cyclone} />}
 
@@ -213,7 +231,13 @@ function MapView({
               radius={24}
               interactive={false}
               pathOptions={{ color: "#59d9e9", weight: 3, fillColor: "#59d9e9", fillOpacity: 0.12 }}
-            />
+            >
+              {selectedItem.name && (
+                <Tooltip permanent direction="top" offset={[0, -22]} className="selected-label">
+                  {selectedItem.name}
+                </Tooltip>
+              )}
+            </CircleMarker>
           )}
 
           {/* Markers for every switched-on category */}

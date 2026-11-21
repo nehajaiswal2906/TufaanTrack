@@ -1,21 +1,9 @@
-import { Shield } from "lucide-react";
-import ModulePlaceholder from "../components/ModulePlaceholder";
+import FacilityPage from "../components/infrastructure/FacilityPage";
+import { SHELTER_PAGE } from "../config/infrastructurePages";
 
+// Cyclone Shelters page (Module 5) — uses the shared FacilityPage
 function SheltersPage() {
-  return (
-    <ModulePlaceholder
-      icon={Shield}
-      module={5}
-      title="Cyclone Shelters"
-      summary="Locate cyclone shelters and review their details."
-      features={[
-        "Shelter markers on the map",
-        "Shelter list with search",
-        "Information panel for each shelter",
-        "Roads and bridges when data is available"
-      ]}
-    />
-  );
+  return <FacilityPage config={SHELTER_PAGE} />;
 }
 
 export default SheltersPage;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
@@ -41,7 +41,9 @@ function Layout() {
         <Topbar page={page} onMenuClick={() => setSidebarOpen(true)} />
 
         <div className="page" key={location.pathname}>
-          <Outlet />
+          <Suspense fallback={<div className="page-message">Loading page…</div>}>
+            <Outlet />
+          </Suspense>
         </div>
 
         <footer className="footer">

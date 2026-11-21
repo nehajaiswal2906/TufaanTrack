@@ -1,21 +1,9 @@
-import { Hospital } from "lucide-react";
-import ModulePlaceholder from "../components/ModulePlaceholder";
+import FacilityPage from "../components/infrastructure/FacilityPage";
+import { HOSPITAL_PAGE } from "../config/infrastructurePages";
 
+// Medical Facilities page (Module 5) — uses the shared FacilityPage
 function MedicalPage() {
-  return (
-    <ModulePlaceholder
-      icon={Hospital}
-      module={5}
-      title="Medical Facilities"
-      summary="Locate hospitals and primary health centres near affected areas."
-      features={[
-        "Hospital and PHC markers on the map",
-        "Facility list with type labels",
-        "Information panel for each facility",
-        "Distance to nearby settlements when provided"
-      ]}
-    />
-  );
+  return <FacilityPage config={HOSPITAL_PAGE} />;
 }
 
 export default MedicalPage;

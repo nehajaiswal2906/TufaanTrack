@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { MapPin, TriangleAlert, Users, Siren, Info, WifiOff } from "lucide-react";
 
 import MapView from "../components/MapView";
@@ -29,7 +30,9 @@ function SettlementsPage() {
   const settlementData = useApi(loadSettlementData);
   const cyclone = useApi(loadCycloneScenario);
 
-  const [selectedVillageId, setSelectedVillageId] = useState(null); // village shown in the panel
+  // A link like /settlements?village=PURI-V0025 opens with that village selected
+  const [searchParams] = useSearchParams();
+  const [selectedVillageId, setSelectedVillageId] = useState(() => searchParams.get("village")); // village shown in the panel
   const [focusId, setFocusId] = useState(null); // shelter/hospital highlighted on the map
 
   const data = settlementData.data;
@@ -144,6 +147,7 @@ function SettlementsPage() {
             loading={cyclone.loading}
             selectedId={focusId ?? selectedVillageId}
             onSelect={handleMarkerClick}
+            fitCyclone={false}
             sidePanel={
               selectedVillage && (
                 <SettlementDetail

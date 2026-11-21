@@ -534,6 +534,18 @@
   scrollbar-color: #3a536d transparent;
 }
 
+/* Name label above the selected location */
+.leaflet-tooltip.selected-label {
+  color: #09202d;
+  background: #59d9e9;
+  border-color: #59d9e9;
+  font-weight: 700;
+}
+
+.leaflet-tooltip-top.selected-label::before {
+  border-top-color: #59d9e9;
+}
+
 /* ---------- NARROW WINDOWS ---------- */
 
 @media (max-width: 650px) {
