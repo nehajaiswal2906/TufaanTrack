@@ -1,18 +1,19 @@
+import json
+from pathlib import Path
 from typing import Optional
-from fastapi.middleware.cors import CORSMiddleware
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, Integer, String, Float
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-# Connect to the database file
+# ---------- DATABASE (for SOS reports) ----------
 engine = create_engine("sqlite:///./tufaantrack.db", connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
 
 
-# This describes the "reports" table (like an Excel sheet with these columns)
 class Report(Base):
     __tablename__ = "reports"
     report_id = Column(Integer, primary_key=True, index=True)
@@ -24,11 +25,9 @@ class Report(Base):
     status = Column(String, default="UNVERIFIED")
 
 
-# Create the table if it doesn't exist yet
 Base.metadata.create_all(bind=engine)
 
 
-# This describes what the website must send us when someone submits an SOS
 class SOSRequest(BaseModel):
     report_type: str
     description: str
@@ -37,27 +36,46 @@ class SOSRequest(BaseModel):
     longitude: float
 
 
+class StatusUpdate(BaseModel):
+    status: str
+
+
+# ---------- LOAD MEMBER 1's MAP DATA ----------
+# The data folder is 3 levels up from this file
+DATA_FOLDER = Path(__file__).resolve().parent.parent.parent / "data"
+
+
+def load_geojson(file_name):
+    with open(DATA_FOLDER / file_name, encoding="utf-8") as f:
+        return json.load(f)
+
+
+VILLAGES = load_geojson("villages.geojson")
+SHELTERS = load_geojson("shelters.geojson")
+HOSPITALS = load_geojson("hospitals.geojson")
+CYCLONE_FILE = load_geojson("cyclone_warning.geojson")
+
+
+def pick_features(geometry_types):
+    # keep only the features whose shape type is in the list
+    return {
+        "type": "FeatureCollection",
+        "features": [
+            f for f in CYCLONE_FILE["features"]
+            if f["geometry"]["type"] in geometry_types
+        ],
+    }
+
+
+# ---------- APP ----------
 app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# SAMPLE DATA - will be replaced with real data later
-SETTLEMENTS = [
-    {"village_id": "V1", "name": "Village A", "population": 1200, "latitude": 19.80, "longitude": 85.82},
-    {"village_id": "V2", "name": "Village B", "population": 800, "latitude": 19.75, "longitude": 85.90},
-]
-
-SHELTERS = [
-    {"shelter_id": "S1", "name": "Cyclone Shelter 1", "latitude": 19.78, "longitude": 85.85},
-]
-
-HOSPITALS = [
-    {"hospital_id": "H1", "name": "Primary Health Centre 1", "latitude": 19.77, "longitude": 85.84},
-]
 
 
 @app.get("/api/health")
@@ -67,7 +85,7 @@ def health():
 
 @app.get("/api/settlements")
 def get_settlements():
-    return SETTLEMENTS
+    return VILLAGES
 
 
 @app.get("/api/shelters")
@@ -78,6 +96,36 @@ def get_shelters():
 @app.get("/api/hospitals")
 def get_hospitals():
     return HOSPITALS
+
+
+@app.get("/api/roads")
+def get_roads():
+    # No road data yet, so we return an empty map layer
+    return {"type": "FeatureCollection", "features": []}
+
+
+@app.get("/api/cyclone")
+def get_cyclone():
+    return pick_features(["LineString"])
+
+
+@app.get("/api/warning-zone")
+def get_warning_zone():
+    return pick_features(["Polygon", "MultiPolygon"])
+
+
+# ---------- REPORTS ----------
+def report_to_dict(report):
+    return {
+        "report_id": report.report_id,
+        "report_type": report.report_type,
+        "description": report.description,
+        "village_id": report.village_id,
+        "latitude": report.latitude,
+        "longitude": report.longitude,
+        "status": report.status,
+    }
+
 
 @app.post("/api/sos")
 def create_sos(sos: SOSRequest):
@@ -93,40 +141,15 @@ def create_sos(sos: SOSRequest):
     db.add(report)
     db.commit()
     db.refresh(report)
-    result = {
-        "report_id": report.report_id,
-        "report_type": report.report_type,
-        "description": report.description,
-        "village_id": report.village_id,
-        "latitude": report.latitude,
-        "longitude": report.longitude,
-        "status": report.status,
-    }
+    result = report_to_dict(report)
     db.close()
     return result
-
-
-class StatusUpdate(BaseModel):
-    status: str
-
-
-def report_to_dict(report):
-    return {
-        "report_id": report.report_id,
-        "report_type": report.report_type,
-        "description": report.description,
-        "village_id": report.village_id,
-        "latitude": report.latitude,
-        "longitude": report.longitude,
-        "status": report.status,
-    }
 
 
 @app.get("/api/reports")
 def get_reports():
     db = SessionLocal()
-    reports = db.query(Report).all()
-    result = [report_to_dict(r) for r in reports]
+    result = [report_to_dict(r) for r in db.query(Report).all()]
     db.close()
     return result
 
@@ -145,31 +168,3 @@ def update_status(report_id: int, update: StatusUpdate):
     result = report_to_dict(report)
     db.close()
     return result
-
-CYCLONE_TRACK = {
-    "type": "Feature",
-    "properties": {"name": "Sample Cyclone (historical)"},
-    "geometry": {
-        "type": "LineString",
-        "coordinates": [[85.5, 19.2], [85.7, 19.5], [85.85, 19.8], [86.0, 20.1]],
-    },
-}
-
-WARNING_ZONE = {
-    "type": "Feature",
-    "properties": {"name": "Sample Warning Zone"},
-    "geometry": {
-        "type": "Polygon",
-        "coordinates": [[[85.6, 19.6], [86.1, 19.6], [86.1, 20.0], [85.6, 20.0], [85.6, 19.6]]],
-    },
-}
-
-
-@app.get("/api/cyclone")
-def get_cyclone():
-    return CYCLONE_TRACK
-
-
-@app.get("/api/warning-zone")
-def get_warning_zone():
-    return WARNING_ZONE
