@@ -1,9 +1,9 @@
-
 import geopandas as gpd
-from shapely.geometry import Point, Polygon
+from shapely.geometry import Point, Polygon, LineString
 
 from exposure import assess_exposure
 from facility_analysis import analyze_nearby_facilities
+from infrastructure_analysis import analyze_infrastructure_exposure
 from report import save_assessment_report
 
 
@@ -138,7 +138,55 @@ facility_results = analyze_nearby_facilities(
 )
 
 
-# STEP 8: DISPLAY EXPOSURE RESULTS
+# STEP 8: CREATE SYNTHETIC ROAD & BRIDGE DATA
+
+road_data = {
+    "road_id": ["RD-01", "RD-02", "RD-03"],
+    "name": [
+        "Puri-Konark Coastal Highway",
+        "Village Link Road North",
+        "South Evacuation Corridor"
+    ],
+    "road_type": ["Highway", "Local Road", "Primary Road"],
+    "geometry": [
+        LineString([(85.79, 19.79), (85.83, 19.81), (85.87, 19.83)]),
+        LineString([(85.75, 19.86), (85.78, 19.88)]),
+        LineString([(85.81, 19.76), (85.82, 19.80)])
+    ]
+}
+
+roads = gpd.GeoDataFrame(
+    road_data,
+    geometry="geometry",
+    crs="EPSG:4326"
+)
+
+bridge_data = {
+    "bridge_id": ["BR-01", "BR-02"],
+    "name": ["Nuanai River Bridge", "Inland Canal Bridge"],
+    "geometry": [
+        Point(85.82, 19.80),
+        Point(85.76, 19.87)
+    ]
+}
+
+bridges = gpd.GeoDataFrame(
+    bridge_data,
+    geometry="geometry",
+    crs="EPSG:4326"
+)
+
+
+# STEP 9: RUN INFRASTRUCTURE EXPOSURE ANALYSIS
+
+infrastructure_results = analyze_infrastructure_exposure(
+    roads=roads,
+    bridges=bridges,
+    warning_zones=warning_zones
+)
+
+
+# STEP 10: DISPLAY EXPOSURE RESULTS
 
 print("\n========== TUFAANTRACK ==========")
 print("     CYCLONE EXPOSURE ANALYSIS")
@@ -157,7 +205,7 @@ print("Assessment:",
       results["assessment"])
 
 
-# STEP 9: DISPLAY FACILITY RESULTS
+# STEP 11: DISPLAY FACILITY RESULTS
 
 print("\n====== FACILITY INTELLIGENCE ======\n")
 
@@ -201,7 +249,22 @@ for item in facility_results:
     print("---------------------------------")
 
 
-# STEP 10: GENERATE COMPLETE JSON REPORT
+# STEP 12: DISPLAY INFRASTRUCTURE RESULTS
+
+print("\n==== INFRASTRUCTURE ASSESSMENT ====\n")
+
+print("Total roads analysed:", infrastructure_results["total_roads_analysed"])
+print("Affected roads:", infrastructure_results["affected_roads_count"])
+for road in infrastructure_results["affected_roads"]:
+    print(f" - {road['name']} ({road['road_type']}): {road['status']}")
+
+print("\nTotal bridges analysed:", infrastructure_results["total_bridges_analysed"])
+print("Affected bridges:", infrastructure_results["affected_bridges_count"])
+for bridge in infrastructure_results["affected_bridges"]:
+    print(f" - {bridge['name']}: {bridge['status']}")
+
+
+# STEP 13: GENERATE COMPLETE JSON REPORT
 
 save_assessment_report(
     results=results,
@@ -217,7 +280,8 @@ save_assessment_report(
         "facility_search_radius_km": 10
     },
 
-    facility_results=facility_results
+    facility_results=facility_results,
+    infrastructure_results=infrastructure_results
 )
 
 print("\nTufaanTrack analysis completed successfully!")

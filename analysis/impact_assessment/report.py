@@ -1,4 +1,3 @@
-
 import json
 from pathlib import Path
 from datetime import datetime, timezone
@@ -8,7 +7,8 @@ def save_assessment_report(
     results,
     output_file,
     metadata=None,
-    facility_results=None
+    facility_results=None,
+    infrastructure_results=None
 ):
 
     if metadata is None:
@@ -16,6 +16,9 @@ def save_assessment_report(
 
     if facility_results is None:
         facility_results = []
+
+    if infrastructure_results is None:
+        infrastructure_results = {}
 
     report = {
         "project": "TufaanTrack",
@@ -48,11 +51,13 @@ def save_assessment_report(
 
         "facility_assessment": facility_results,
 
+        "infrastructure_assessment": infrastructure_results,
+
         "limitations": [
             "This test uses synthetic geographical data.",
             "Settlement-centre points are used for exposure analysis.",
             "Facility distances represent straight-line distances.",
-            "Road accessibility has not been assessed.",
+            "Road and bridge intersections indicate spatial overlap, not real-time flood depth or structural damage.",
             "Facility operational status is not verified.",
             "Results are decision-support information, not official evacuation instructions."
         ]
