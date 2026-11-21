@@ -138,3 +138,31 @@ def update_status(report_id: int, update: StatusUpdate):
     result = report_to_dict(report)
     db.close()
     return result
+
+CYCLONE_TRACK = {
+    "type": "Feature",
+    "properties": {"name": "Sample Cyclone (historical)"},
+    "geometry": {
+        "type": "LineString",
+        "coordinates": [[85.5, 19.2], [85.7, 19.5], [85.85, 19.8], [86.0, 20.1]],
+    },
+}
+
+WARNING_ZONE = {
+    "type": "Feature",
+    "properties": {"name": "Sample Warning Zone"},
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[85.6, 19.6], [86.1, 19.6], [86.1, 20.0], [85.6, 20.0], [85.6, 19.6]]],
+    },
+}
+
+
+@app.get("/api/cyclone")
+def get_cyclone():
+    return CYCLONE_TRACK
+
+
+@app.get("/api/warning-zone")
+def get_warning_zone():
+    return WARNING_ZONE
