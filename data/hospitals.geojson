@@ -14,7 +14,7 @@
         "hospital_id": "PURI-H0001",
         "name": "UPHC, Swargadwar",
         "type": "PHC",
-        "beds": 108,
+        "beds": 0,
         "source": "osm",
         "elevation_m": 17
       }
@@ -176,7 +176,7 @@
         "hospital_id": "PURI-H0010",
         "name": "I.D.H, Puri",
         "type": "hospital",
-        "beds": 0,
+        "beds": 108,
         "source": "osm",
         "elevation_m": 8
       }

@@ -22,7 +22,7 @@
       "reliability": "osm_verified",
       "simulated": false,
       "feature_count": 42,
-      "notes": "42 healthcare facilities in Puri district mapped in OSM (1 district hospital, 1 CHC, 1 PHC, 22 hospitals, 17 clinics). Bed counts use OSM tag if present, otherwise 0 indicating unknown count (source='osm'). Ground elevations from Open-Meteo Copernicus DEM 90m."
+      "notes": "42 healthcare facilities in Puri district mapped in OSM (1 district hospital, 1 CHC, 1 PHC, 22 hospitals, 17 clinics). Bed counts use OSM tag if present, otherwise 0 indicating unknown count (source='osm'). Ground elevations from Open-Meteo Copernicus DEM 90m. Bed count for PURI-H0010 (I.D.H, Puri) = 108, from the TB & IDH Puri biomedical-waste annual report on puri.odisha.gov.in (approx. 2018); verify before operational use."
     },
     "cyclone_warning.geojson": {
       "source": "Simulated cyclone scenario for ASTRA 2026 hackathon demonstration",
