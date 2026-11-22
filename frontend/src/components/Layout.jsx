@@ -2,6 +2,8 @@ import { Suspense, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
+import BackendBanner from "./BackendBanner";
+import { useBackendHealth } from "../hooks/useBackendHealth";
 import { getPageMeta } from "../config/navigation";
 
 // Fallback details for URLs that don't match any page
@@ -16,6 +18,7 @@ const NOT_FOUND_PAGE = {
 function Layout() {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const health = useBackendHealth(); // re-checks the backend every 30 seconds
 
   const page = getPageMeta(location.pathname) ?? NOT_FOUND_PAGE;
 
@@ -27,7 +30,7 @@ function Layout() {
 
   return (
     <div className="app">
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} backendStatus={health.status} />
 
       {/* Dark backdrop behind the drawer on narrow screens */}
       {sidebarOpen && (
@@ -39,6 +42,8 @@ function Layout() {
 
       <main className="content">
         <Topbar page={page} pathname={location.pathname} onMenuClick={() => setSidebarOpen(true)} />
+
+        <BackendBanner health={health} />
 
         <div className="page" key={location.pathname}>
           <Suspense fallback={<div className="page-message">Loading page…</div>}>

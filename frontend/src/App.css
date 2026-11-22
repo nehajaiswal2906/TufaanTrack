@@ -855,6 +855,113 @@
 }
 
 /* =========================================
+   SMALL BUTTONS (banner, report cards)
+========================================= */
+
+.small-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 28px;
+  padding: 0 10px;
+  color: #c1d2e4;
+  background: #1b2c41;
+  border: 1px solid #3a536d;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.small-button:hover:not(:disabled) {
+  border-color: #59d9e9;
+  color: #59d9e9;
+}
+
+.small-button.verify {
+  color: #5be0ae;
+  border-color: #327464;
+}
+
+.small-button.reject {
+  color: #ff8a98;
+  border-color: #7a3442;
+}
+
+.small-button.primary {
+  color: #09202d;
+  background: #55d1df;
+  border-color: #55d1df;
+}
+
+.small-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* =========================================
+   BACKEND STATUS BANNER
+========================================= */
+
+.backend-banner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 11px 14px;
+  margin-bottom: 18px;
+  color: #d5e5f2;
+  border-radius: 9px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.backend-banner > span {
+  flex: 1;
+  min-width: 220px;
+}
+
+.backend-banner strong {
+  color: #ffffff;
+}
+
+.backend-banner.waking {
+  background: #162b40;
+  border: 1px solid #2f6580;
+}
+
+.backend-banner.waking > svg {
+  color: #59d9e9;
+}
+
+.backend-banner.offline {
+  background: #3d1d26;
+  border: 1px solid #7a3442;
+}
+
+.backend-banner.offline > svg {
+  color: #ff6576;
+}
+
+.backend-banner.restored {
+  background: #17463d;
+  border: 1px solid #327464;
+}
+
+.backend-banner.restored > svg {
+  color: #5be0ae;
+}
+
+.banner-close {
+  display: flex;
+  padding: 4px;
+  color: #c1d2e4;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* =========================================
    RESPONSE SNAPSHOT (Overview)
 ========================================= */
 

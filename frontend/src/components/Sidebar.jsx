@@ -1,19 +1,20 @@
 import { NavLink } from "react-router-dom";
 import { Satellite, X } from "lucide-react";
 import { NAV_SECTIONS } from "../config/navigation";
-import { useApi } from "../hooks/useApi";
-import { api, API_BASE_URL } from "../services/api";
+import { API_BASE_URL } from "../services/api";
 
 // Left-hand navigation.
 // `isOpen` and `onClose` are only used on narrow screens,
 // where the sidebar slides in as a drawer.
-function Sidebar({ isOpen, onClose }) {
-  // Ask the backend "are you there?" once when the site opens
-  const health = useApi(api.getHealth);
-
-  let status = { dot: "pending", title: "Checking backend…" };
-  if (health.error) status = { dot: "offline", title: "Backend offline" };
-  else if (health.data) status = { dot: "online", title: "Backend online" };
+function Sidebar({ isOpen, onClose, backendStatus }) {
+  // backendStatus comes from Layout, which re-checks the backend every 30 seconds
+  const STATUS = {
+    checking: { dot: "pending", title: "Checking backend…" },
+    waking: { dot: "pending", title: "Backend waking up…" },
+    online: { dot: "online", title: "Backend online" },
+    offline: { dot: "offline", title: "Backend offline" }
+  };
+  const status = STATUS[backendStatus] ?? STATUS.checking;
 
   return (
     <aside className={`sidebar ${isOpen ? "open" : ""}`}>
