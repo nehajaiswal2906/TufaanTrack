@@ -300,47 +300,6 @@
   border-top: 1px solid #22354b;
 }
 
-.small-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  min-height: 28px;
-  padding: 0 10px;
-  color: #c1d2e4;
-  background: #1b2c41;
-  border: 1px solid #3a536d;
-  border-radius: 7px;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.small-button:hover:not(:disabled) {
-  border-color: #59d9e9;
-  color: #59d9e9;
-}
-
-.small-button.verify {
-  color: #5be0ae;
-  border-color: #327464;
-}
-
-.small-button.reject {
-  color: #ff8a98;
-  border-color: #7a3442;
-}
-
-.small-button.primary {
-  color: #09202d;
-  background: #55d1df;
-  border-color: #55d1df;
-}
-
-.small-button:disabled {
-  opacity: 0.6;
-  cursor: wait;
-}
-
 .confirm-row {
   display: flex;
   flex-wrap: wrap;

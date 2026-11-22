@@ -53,6 +53,29 @@ The sidebar footer shows **Backend online / offline** and the address in use.
 
 ---
 
+## Deployment (prototype)
+
+**Frontend → Vercel** · **Backend → Render** (both free tiers).
+
+1. **Backend on Render** — New → Web Service → connect the GitHub repo:
+   - Root Directory: *(leave empty — the backend reads `data/` and `analysis/`)*
+   - Build Command: `pip install -r backend/requirements.txt`
+   - Start Command: `cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+   - Instance type: Free. Copy the URL it gives you (e.g. `https://tufaantrack-api.onrender.com`).
+2. **Frontend on Vercel** — Add New → Project → import the repo:
+   - Root Directory: `frontend` · Framework: Vite (auto-detected)
+   - Environment Variable: `VITE_API_BASE_URL` = the Render URL (no trailing `/`)
+   - `frontend/vercel.json` makes page links like `/map` work after a refresh.
+3. Every push to `main` redeploys both automatically.
+
+**Free-tier limits (shown to users in the interface):**
+- The backend sleeps after 15 minutes without traffic and takes up to ~1 minute to wake up —
+  the site shows a "Connecting to the backend…" banner meanwhile and re-checks every 30 s.
+- Render's free disk is temporary: **SOS reports saved in SQLite are lost** when the backend
+  restarts, redeploys or sleeps. For permanent reports the backend needs a hosted database.
+
+---
+
 ## Pages
 
 | URL | Page | Backend endpoints |
@@ -129,3 +152,4 @@ The interface labels these limits wherever the data appears:
   status. The Reports page labels these as *Operator controls* and asks for confirmation.
 - The SOS form records reports; it does **not** dispatch help. It tells users to call **112**.
 - Map background tiles come from OpenStreetMap and need an internet connection.
+- On the free hosting plan, reports reset when the backend restarts (see Deployment).
