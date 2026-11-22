@@ -1,0 +1,376 @@
+/* =========================================
+   TUFAANTRACK — SOS FORM & EMERGENCY REPORTS (Module 7)
+========================================= */
+
+/* ---------- SOS page layout: form left, map right ---------- */
+
+.sos-layout {
+  display: grid;
+  grid-template-columns: 420px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.sos-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sos-form .panel-heading {
+  margin-bottom: 0;
+}
+
+.sos-form .panel-heading > svg {
+  color: #ff6576;
+}
+
+.sos-emergency-note {
+  display: flex;
+  gap: 9px;
+  color: #c9dceb;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.sos-emergency-note.top {
+  padding: 10px 12px;
+  background: #3d1d26;
+  border: 1px solid #7a3442;
+  border-radius: 9px;
+}
+
+.sos-emergency-note svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #ff6576;
+}
+
+.sos-emergency-note strong {
+  color: #ffffff;
+}
+
+/* ---------- Form fields ---------- */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.field-label {
+  display: flex;
+  justify-content: space-between;
+  color: #d5e5f2;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.field-label em {
+  color: #7f95ad;
+  font-style: normal;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.field-label em.over {
+  color: #ff8a98;
+}
+
+.field select,
+.field textarea,
+.field input {
+  width: 100%;
+  padding: 9px 11px;
+  color: #edf4fc;
+  background: #142237;
+  border: 1px solid #3a536d;
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.5;
+}
+
+.field select:focus,
+.field textarea:focus,
+.field input:focus {
+  border-color: #55d1df;
+}
+
+.field [aria-invalid="true"] {
+  border-color: #ff6576;
+}
+
+.field ::placeholder {
+  color: #6f849b;
+}
+
+.field-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  color: #7f95ad;
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+
+.field-hint svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.field-error {
+  color: #ff8a98;
+  font-size: 11px;
+}
+
+.field-warning {
+  color: #f6c47c;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.coord-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.coord-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #8ea3b9;
+  font-size: 10.5px;
+}
+
+.location-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.secondary-button.small {
+  min-height: 30px;
+  padding: 0 10px;
+  font-size: 11px;
+}
+
+.form-error {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  color: #ffd0d6;
+  background: #3d1d26;
+  border: 1px solid #7a3442;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.form-error svg {
+  flex-shrink: 0;
+  color: #ff6576;
+}
+
+.submit-button {
+  width: 100%;
+  min-height: 44px;
+  color: #ffffff;
+  background: #e5394d;
+  border-color: #e5394d;
+  font-size: 13px;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #ff4d5e;
+  border-color: #ff4d5e;
+}
+
+.submit-button:disabled,
+.primary-button:disabled,
+.secondary-button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+/* ---------- Success screen ---------- */
+
+.placeholder-icon.success {
+  color: #36d69d;
+}
+
+.welcome-actions.centered {
+  justify-content: center;
+  margin: 22px 0 6px;
+}
+
+.sos-success .sos-emergency-note {
+  justify-content: center;
+  margin-top: 16px;
+}
+
+/* ---------- Report list ---------- */
+
+.report-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-right: -8px;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: #3a536d transparent;
+}
+
+.report-card {
+  flex-shrink: 0;
+  background: #172a3f;
+  border: 1px solid #2f4760;
+  border-radius: 10px;
+}
+
+.report-card.selected {
+  border-color: #3f7d95;
+  box-shadow: 0 0 0 1px #3f7d95;
+}
+
+.report-main {
+  width: 100%;
+  padding: 12px 12px 8px;
+  color: inherit;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.report-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.report-top strong {
+  color: #f4f8ff;
+  font-size: 13px;
+}
+
+.report-desc {
+  margin-top: 6px;
+  color: #c1d2e4;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.report-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 8px;
+  color: #7f95ad;
+  font-size: 10.5px;
+}
+
+.report-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.report-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 12px 10px;
+  border-top: 1px solid #22354b;
+}
+
+.small-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 28px;
+  padding: 0 10px;
+  color: #c1d2e4;
+  background: #1b2c41;
+  border: 1px solid #3a536d;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.small-button:hover:not(:disabled) {
+  border-color: #59d9e9;
+  color: #59d9e9;
+}
+
+.small-button.verify {
+  color: #5be0ae;
+  border-color: #327464;
+}
+
+.small-button.reject {
+  color: #ff8a98;
+  border-color: #7a3442;
+}
+
+.small-button.primary {
+  color: #09202d;
+  background: #55d1df;
+  border-color: #55d1df;
+}
+
+.small-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.confirm-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: #d5e5f2;
+  font-size: 11.5px;
+}
+
+.report-error {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 12px 10px;
+  color: #ff8a98;
+  font-size: 11px;
+}
+
+.list-empty svg {
+  color: #6f849b;
+}
+
+.list-empty .secondary-button {
+  margin-top: 10px;
+}
+
+/* ---------- Narrower windows ---------- */
+
+@media (max-width: 1150px) {
+  .sos-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,283 @@
+/* =========================================
+   TUFAANTRACK — CYCLONE TRACKING PAGE (Module 3)
+========================================= */
+
+/* Map on the left, information panel on the right */
+.cyclone-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: start;
+  gap: 18px;
+}
+
+.info-panel {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: #1b2c41;
+  border: 1px solid #3a526c;
+  border-radius: 12px;
+}
+
+.panel-message {
+  color: #a8bbcf;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.panel-message.error {
+  color: #ff8a98;
+}
+
+.simulated-banner {
+  display: flex;
+  gap: 9px;
+  padding: 11px 12px;
+  color: #f6dcae;
+  background: #3a2f1c;
+  border: 1px solid #6b5630;
+  border-radius: 9px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.simulated-banner svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #f3b65c;
+}
+
+.simulated-banner strong {
+  color: #ffd79a;
+}
+
+.cyclone-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cyclone-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+}
+
+.cyclone-title .eyebrow {
+  margin-bottom: 3px;
+}
+
+.cyclone-title h2 {
+  color: #f4f8ff;
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+.cyclone-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: -4px;
+}
+
+.cyclone-category {
+  margin-top: -8px;
+  color: #a8bbcf;
+  font-size: 12px;
+}
+
+.info-section {
+  padding-top: 14px;
+  border-top: 1px solid #2f4760;
+}
+
+.info-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 11px;
+  color: #8ea3b9;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+
+.info-section h3 svg {
+  color: #59d9e9;
+}
+
+/* ---------- Movement compass ---------- */
+
+.movement-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.compass {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #142237;
+  border: 1px solid #3a536d;
+  border-radius: 50%;
+}
+
+.compass svg {
+  transition: transform 0.4s ease;
+}
+
+.compass-n {
+  position: absolute;
+  top: 3px;
+  color: #6f849b;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.movement-box strong {
+  display: block;
+  color: #f4f8ff;
+  font-size: 14px;
+}
+
+.movement-box span {
+  display: block;
+  margin-top: 2px;
+  color: #c1d2e4;
+  font-size: 12px;
+}
+
+.movement-box small {
+  display: block;
+  margin-top: 4px;
+  color: #7f95ad;
+  font-size: 10px;
+}
+
+/* ---------- Track points list ---------- */
+
+.track-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.track-points li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 14px 52px 1fr;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 0;
+  font-size: 11px;
+}
+
+/* Vertical line joining the points */
+.track-points li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 17px;
+  bottom: -7px;
+  border-left: 2px dashed #4e4372;
+}
+
+.point-dot {
+  width: 10px;
+  height: 10px;
+  margin-left: 2px;
+  background: #c4a7ff;
+  border: 2px solid #0e1a28;
+  border-radius: 50%;
+}
+
+.track-points li.last .point-dot {
+  width: 14px;
+  height: 14px;
+  margin-left: 0;
+  box-shadow: 0 0 0 3px #c4a7ff33;
+}
+
+.point-label {
+  color: #8ea3b9;
+}
+
+.point-coords {
+  color: #edf4fc;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Warning zones list ---------- */
+
+.zone-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zone-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 11px;
+  background: #172a3f;
+  border: 1px solid #2f4760;
+  border-left: 3px solid var(--zone-color);
+  border-radius: 8px;
+}
+
+.zone-swatch {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--zone-color) 30%, transparent);
+  border: 2px solid var(--zone-color);
+  border-radius: 4px;
+}
+
+.zone-list strong {
+  display: block;
+  color: #edf4fc;
+  font-size: 12px;
+}
+
+.zone-list small {
+  display: block;
+  color: #7f95ad;
+  font-size: 10px;
+}
+
+.zone-surge {
+  margin-left: auto;
+  color: #f4f8ff;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.zone-surge small {
+  font-size: 9px;
+  font-weight: 500;
+}
+
+/* ---------- Narrower windows: panel goes under the map ---------- */
+
+@media (max-width: 1150px) {
+  .cyclone-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

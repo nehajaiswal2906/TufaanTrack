@@ -176,7 +176,7 @@
         "hospital_id": "PURI-H0010",
         "name": "I.D.H, Puri",
         "type": "hospital",
-        "beds": 0,
+        "beds": 108,
         "source": "osm",
         "elevation_m": 8
       }
@@ -571,7 +571,7 @@
       "properties": {
         "hospital_id": "PURI-H0032",
         "name": "Government Hospital, Chalisbatia",
-        "type": "hospital",
+        "type": "PHC",
         "beds": 0,
         "source": "osm",
         "elevation_m": 9
@@ -661,7 +661,7 @@
       "properties": {
         "hospital_id": "PURI-H0037",
         "name": "Government Hospital, Sukal",
-        "type": "hospital",
+        "type": "PHC",
         "beds": 0,
         "source": "osm",
         "elevation_m": 4
@@ -733,7 +733,7 @@
       "properties": {
         "hospital_id": "PURI-H0041",
         "name": "Government Hospital, Indipur",
-        "type": "hospital",
+        "type": "PHC",
         "beds": 0,
         "source": "osm",
         "elevation_m": 3

@@ -1,0 +1,522 @@
+/* =========================================
+   TUFAANTRACK — SETTLEMENTS PAGE (Module 4)
+========================================= */
+
+/* ---------- Summary numbers ---------- */
+
+.summary-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.summary-tile {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 15px 16px;
+  background: #1b2c41;
+  border: 1px solid #3a526c;
+  border-radius: 11px;
+}
+
+.summary-icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #58d4e4;
+  background: #203d56;
+  border-radius: 9px;
+}
+
+.summary-tile span {
+  display: block;
+  color: #a8bbcf;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.summary-tile strong {
+  display: block;
+  margin-top: 2px;
+  color: #ffffff;
+  font-size: 22px;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary-tile small {
+  display: block;
+  color: #7f95ad;
+  font-size: 10px;
+}
+
+/* ---------- Layout: list on the left, map on the right ---------- */
+
+.settlement-layout {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.list-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.settlement-list-panel {
+  display: flex;
+  flex-direction: column;
+  /* same height as the map, so the list scrolls inside */
+  height: calc(var(--list-height) + 46px);
+  min-height: 0;
+}
+
+/* ---------- Search, filter and sort ---------- */
+
+.list-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 11px;
+  color: #8ea3b9;
+  background: #142237;
+  border: 1px solid #3a536d;
+  border-radius: 9px;
+}
+
+.search-box:focus-within {
+  border-color: #55d1df;
+}
+
+.search-box input {
+  flex: 1;
+  min-width: 0;
+  color: #edf4fc;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 13px;
+}
+
+.search-box input::placeholder {
+  color: #6f849b;
+}
+
+/* hide the browser's own clear button (we have our own) */
+.search-box input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-box button {
+  display: flex;
+  padding: 2px;
+  color: #8ea3b9;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.segmented {
+  display: flex;
+  padding: 3px;
+  background: #142237;
+  border: 1px solid #2f4760;
+  border-radius: 9px;
+}
+
+.segmented button {
+  flex: 1;
+  padding: 6px 4px;
+  color: #a8bbcf;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.segmented button span {
+  color: #6f849b;
+  font-weight: 700;
+}
+
+.segmented button.active {
+  color: #09202d;
+  background: #55d1df;
+}
+
+.segmented button.active span {
+  color: #09202d;
+}
+
+.sort-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #8ea3b9;
+  font-size: 11px;
+}
+
+.sort-select select {
+  flex: 1;
+  height: 32px;
+  padding: 0 8px;
+  color: #edf4fc;
+  background: #142237;
+  border: 1px solid #3a536d;
+  border-radius: 7px;
+  font-size: 12px;
+}
+
+.list-count {
+  margin: 12px 0 6px;
+  color: #7f95ad;
+  font-size: 11px;
+}
+
+.list-empty {
+  padding: 30px 10px;
+  color: #a8bbcf;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* ---------- Village rows ---------- */
+
+.settlement-rows {
+  list-style: none;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  margin-right: -8px;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: #3a536d transparent;
+}
+
+.settlement-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 11px;
+  color: inherit;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.settlement-row:hover {
+  background: #1f3349;
+}
+
+.settlement-row.selected {
+  background: #203d56;
+  border-color: #3f7d95;
+}
+
+.row-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.row-main strong {
+  display: block;
+  overflow: hidden;
+  color: #edf4fc;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.row-main span {
+  display: block;
+  margin-top: 1px;
+  color: #7f95ad;
+  font-size: 10.5px;
+}
+
+/* ---------- Details panel (inside the map) ---------- */
+
+.settlement-detail {
+  padding: 16px;
+}
+
+.detail-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.detail-head .eyebrow {
+  margin-bottom: 3px;
+}
+
+.detail-head h3 {
+  color: #f4f8ff;
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+.detail-id {
+  color: #7f95ad;
+  font-size: 11px;
+}
+
+.detail-close {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c1d2e4;
+  background: #1b2c41;
+  border: 1px solid #3a536d;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.detail-close:hover {
+  color: #59d9e9;
+  border-color: #59d9e9;
+}
+
+.detail-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  color: #c1d2e4;
+  font-size: 11px;
+}
+
+.fact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.fact {
+  padding: 9px 10px;
+  background: #172a3f;
+  border: 1px solid #2a4158;
+  border-radius: 8px;
+}
+
+.fact-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #8ea3b9;
+  font-size: 10px;
+}
+
+.fact strong {
+  display: block;
+  margin-top: 3px;
+  color: #f4f8ff;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.fact small {
+  display: block;
+  margin-top: 2px;
+  color: #7f95ad;
+  font-size: 9.5px;
+  line-height: 1.35;
+}
+
+.detail-coords {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 9px;
+  color: #8ea3b9;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-section {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #2f4760;
+}
+
+.detail-heading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8ea3b9;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.detail-heading svg {
+  color: #59d9e9;
+}
+
+.detail-muted {
+  margin-top: 8px;
+  color: #a8bbcf;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.detail-muted svg {
+  vertical-align: -1px;
+}
+
+.reasons {
+  margin-top: 10px;
+}
+
+.reasons ul {
+  margin-top: 6px;
+  padding-left: 16px;
+  color: #d5e5f2;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.reasons li + li {
+  margin-top: 3px;
+}
+
+.closest-block {
+  margin-top: 12px;
+}
+
+.closest-block h4 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #c1d2e4;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.closest-list {
+  list-style: none;
+  margin-top: 5px;
+}
+
+.closest-list button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 8px;
+  color: #d5e5f2;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  font-size: 11.5px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.closest-list button:hover {
+  background: #1f3349;
+}
+
+.closest-list span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.closest-list em {
+  flex-shrink: 0;
+  color: #8ea3b9;
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-footnote {
+  margin-top: 10px;
+  color: #6f849b;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+/* Text values in fact boxes (smaller than numbers) */
+.fact strong.fact-text {
+  font-size: 12.5px;
+  line-height: 1.35;
+}
+
+.closest-meta {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+/* A quieter notice placed right under another one */
+.notice.subtle {
+  margin-top: -18px;
+  border-left-color: #4a6683;
+}
+
+.notice.subtle svg {
+  color: #8ea3b9;
+}
+
+/* ---------- Narrower windows ---------- */
+
+@media (max-width: 1150px) {
+  .summary-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .settlement-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .settlement-list-panel {
+    height: 420px;
+  }
+}
+
+@media (max-width: 650px) {
+  .summary-row {
+    gap: 10px;
+  }
+
+  .summary-tile {
+    padding: 12px;
+  }
+
+  .summary-icon {
+    display: none;
+  }
+
+  .summary-tile strong {
+    font-size: 19px;
+  }
+}
